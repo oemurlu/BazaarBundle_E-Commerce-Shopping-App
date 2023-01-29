@@ -15,7 +15,6 @@
 		B600792829842A90002A1CFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B600792729842A90002A1CFF /* GoogleService-Info.plist */; };
 		B600792B29842C6C002A1CFF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B600792A29842C6C002A1CFF /* FirebaseAnalytics */; };
 		B600792D29842C6C002A1CFF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B600792C29842C6C002A1CFF /* FirebaseAuth */; };
-		B600793629843071002A1CFF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600793529843071002A1CFF /* WelcomeViewController.swift */; };
 		B6007938298430A8002A1CFF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6007937298430A8002A1CFF /* RegisterViewController.swift */; };
 		B600793A298430B4002A1CFF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6007939298430B4002A1CFF /* LoginViewController.swift */; };
 		B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600793B29843A40002A1CFF /* HomeViewController.swift */; };
@@ -33,7 +32,6 @@
 		B600791F298406E7002A1CFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B6007921298406E7002A1CFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B600792729842A90002A1CFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		B600793529843071002A1CFF /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		B6007937298430A8002A1CFF /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		B6007939298430B4002A1CFF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B600793B29843A40002A1CFF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				B6D445352985B92800C22041 /* Scenes */,
-				B600793529843071002A1CFF /* WelcomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -254,7 +251,6 @@
 				B6007914298406E6002A1CFF /* AppDelegate.swift in Sources */,
 				B6D4452E2984F7E300C22041 /* DuplicateFuncs.swift in Sources */,
 				B6007916298406E6002A1CFF /* SceneDelegate.swift in Sources */,
-				B600793629843071002A1CFF /* WelcomeViewController.swift in Sources */,
 				B600793A298430B4002A1CFF /* LoginViewController.swift in Sources */,
 				B6D44534298578C800C22041 /* ForgotPasswordViewController.swift in Sources */,
 				B600793E29845D43002A1CFF /* Constants.swift in Sources */,
