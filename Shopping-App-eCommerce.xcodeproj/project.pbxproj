@@ -21,6 +21,7 @@
 		B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600793B29843A40002A1CFF /* HomeViewController.swift */; };
 		B600793E29845D43002A1CFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600793D29845D43002A1CFF /* Constants.swift */; };
 		B6D4452E2984F7E300C22041 /* DuplicateFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4452D2984F7E300C22041 /* DuplicateFuncs.swift */; };
+		B6D44534298578C800C22041 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		B600793B29843A40002A1CFF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B600793D29845D43002A1CFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B6D4452D2984F7E300C22041 /* DuplicateFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateFuncs.swift; sourceTree = "<group>"; };
+		B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,16 +74,11 @@
 		B6007912298406E6002A1CFF /* Shopping-App-eCommerce */ = {
 			isa = PBXGroup;
 			children = (
+				B6D4453A2985BB9300C22041 /* Core */,
 				B6D4452B2984F7C100C22041 /* Helper */,
 				B600793029842F83002A1CFF /* View */,
 				B600792F29842F79002A1CFF /* Model */,
 				B600792E29842F6F002A1CFF /* Controller */,
-				B6007913298406E6002A1CFF /* AppDelegate.swift */,
-				B6007915298406E6002A1CFF /* SceneDelegate.swift */,
-				B600791C298406E7002A1CFF /* Assets.xcassets */,
-				B600791E298406E7002A1CFF /* LaunchScreen.storyboard */,
-				B6007921298406E7002A1CFF /* Info.plist */,
-				B600792729842A90002A1CFF /* GoogleService-Info.plist */,
 			);
 			path = "Shopping-App-eCommerce";
 			sourceTree = "<group>";
@@ -89,10 +86,8 @@
 		B600792E29842F6F002A1CFF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B6D445352985B92800C22041 /* Scenes */,
 				B600793529843071002A1CFF /* WelcomeViewController.swift */,
-				B6007937298430A8002A1CFF /* RegisterViewController.swift */,
-				B6007939298430B4002A1CFF /* LoginViewController.swift */,
-				B600793B29843A40002A1CFF /* HomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -119,6 +114,62 @@
 				B600793D29845D43002A1CFF /* Constants.swift */,
 			);
 			path = Helper;
+			sourceTree = "<group>";
+		};
+		B6D445352985B92800C22041 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B6D445362985B93700C22041 /* Login */,
+				B6D445372985BA3600C22041 /* Home */,
+				B6D445382985BA4C00C22041 /* Basket */,
+				B6D445392985BA5700C22041 /* Profile */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		B6D445362985B93700C22041 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				B6007937298430A8002A1CFF /* RegisterViewController.swift */,
+				B6007939298430B4002A1CFF /* LoginViewController.swift */,
+				B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		B6D445372985BA3600C22041 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B600793B29843A40002A1CFF /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B6D445382985BA4C00C22041 /* Basket */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Basket;
+			sourceTree = "<group>";
+		};
+		B6D445392985BA5700C22041 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		B6D4453A2985BB9300C22041 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				B6007921298406E7002A1CFF /* Info.plist */,
+				B600792729842A90002A1CFF /* GoogleService-Info.plist */,
+				B6007913298406E6002A1CFF /* AppDelegate.swift */,
+				B6007915298406E6002A1CFF /* SceneDelegate.swift */,
+				B600791C298406E7002A1CFF /* Assets.xcassets */,
+				B600791E298406E7002A1CFF /* LaunchScreen.storyboard */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +256,7 @@
 				B6007916298406E6002A1CFF /* SceneDelegate.swift in Sources */,
 				B600793629843071002A1CFF /* WelcomeViewController.swift in Sources */,
 				B600793A298430B4002A1CFF /* LoginViewController.swift in Sources */,
+				B6D44534298578C800C22041 /* ForgotPasswordViewController.swift in Sources */,
 				B600793E29845D43002A1CFF /* Constants.swift in Sources */,
 				B6007938298430A8002A1CFF /* RegisterViewController.swift in Sources */,
 				B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */,
@@ -356,7 +408,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VPZ673SNB7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Shopping-App-eCommerce/Info.plist";
+				INFOPLIST_FILE = "Shopping-App-eCommerce/Core/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -384,7 +436,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VPZ673SNB7;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Shopping-App-eCommerce/Info.plist";
+				INFOPLIST_FILE = "Shopping-App-eCommerce/Core/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -8,4 +8,5 @@
 struct K {
     static let loginToHome = "loginToHome"
     static let registerToLogin = "registerToLogin"
+    static let forgotToLogin = "forgotToLogin"
 }

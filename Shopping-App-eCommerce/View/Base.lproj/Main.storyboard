@@ -45,6 +45,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@oemurlu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRf-Qf-7Tx">
+                                <rect key="frame" x="124" y="797" width="142" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
@@ -88,6 +95,9 @@
                                 <rect key="frame" x="208" y="588" width="152" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Forgot password"/>
+                                <connections>
+                                    <segue destination="5PY-AO-QC6" kind="show" id="bgn-XW-QMU"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hello," textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nQo-Vd-M98">
                                 <rect key="frame" x="51" y="187" width="148" height="57"/>
@@ -113,14 +123,58 @@
                     <connections>
                         <outlet property="emailTextField" destination="onE-Vc-NH8" id="rVA-eR-c9U"/>
                         <outlet property="passwordTextField" destination="Gv7-8G-ved" id="REn-OP-ko2"/>
-                        <segue destination="oEm-fT-22V" kind="show" identifier="loginToHome" id="Asw-v6-Kej"/>
+                        <segue destination="OS4-oS-Jvb" kind="show" identifier="loginToHome" id="c9N-du-HDM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCa-mH-JO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1803.8167938931297" y="-325.35211267605638"/>
+            <point key="canvasLocation" x="2711" y="4"/>
         </scene>
-        <!--Home View Controller-->
+        <!--Forgot Password View Controller-->
+        <scene sceneID="osy-QY-mmW">
+            <objects>
+                <viewController id="5PY-AO-QC6" customClass="ForgotPasswordViewController" customModule="Shopping_App_eCommerce" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PDv-Lm-bLp">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reset your password via email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veV-LK-CH2">
+                                <rect key="frame" x="87" y="218" width="230" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gpb-6t-Jvx">
+                                <rect key="frame" x="87" y="336" width="230" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhb-53-qTk">
+                                <rect key="frame" x="108" y="417" width="177" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Send new password"/>
+                                <connections>
+                                    <action selector="sendNewPasswordButtonPressed:" destination="5PY-AO-QC6" eventType="touchUpInside" id="aoH-aZ-5Dk"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="BZM-mr-gDi"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="jSx-P7-44K"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="Gpb-6t-Jvx" id="syw-Z0-Avf"/>
+                        <segue destination="27X-u6-glH" kind="show" identifier="forgotToLogin" id="wYM-eM-IRP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ox-xP-l1X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2711" y="745"/>
+        </scene>
+        <!--OSMAN-->
         <scene sceneID="Mfr-Vv-MPr">
             <objects>
                 <viewController storyboardIdentifier="homeVC" id="oEm-fT-22V" customClass="HomeViewController" customModule="Shopping_App_eCommerce" customModuleProvider="target" sceneMemberID="viewController">
@@ -128,7 +182,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MAIN SCREEN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mST-p5-R7n">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1st tb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mST-p5-R7n">
                                 <rect key="frame" x="102" y="376" width="188" height="77"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -139,11 +193,12 @@
                         <viewLayoutGuide key="safeArea" id="yNg-8d-Jbp"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="OSMAN" image="house.fill" catalog="system" id="0Jm-yg-kgh"/>
                     <navigationItem key="navigationItem" id="o2G-kA-FJN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hzt-Lz-Icx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2698" y="-325"/>
+            <point key="canvasLocation" x="4642" y="-739"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="GnO-Yp-ZhC">
@@ -213,6 +268,9 @@
                                 <rect key="frame" x="265" y="783" width="76" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign in"/>
+                                <connections>
+                                    <segue destination="27X-u6-glH" kind="show" id="sBw-YZ-dam"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tsH-fw-8ju"/>
@@ -228,7 +286,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uhd-ip-HxV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1803.8167938931297" y="362.67605633802816"/>
+            <point key="canvasLocation" x="1831" y="355"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Nov-p0-Sto">
@@ -248,12 +306,85 @@
             </objects>
             <point key="canvasLocation" x="52.671755725190835" y="3.5211267605633805"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="V1a-2C-aA5">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="OS4-oS-Jvb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="1ch-6F-yqq"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ulX-OF-HNQ">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="oEm-fT-22V" kind="relationship" relationship="viewControllers" id="wEK-Gl-Y8Q"/>
+                        <segue destination="wP8-tS-cac" kind="relationship" relationship="viewControllers" id="Fi4-2b-VAZ"/>
+                        <segue destination="nKq-pC-aXN" kind="relationship" relationship="viewControllers" id="Lme-8p-Iht"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rQu-68-csy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3684.7328244274809" y="3.5211267605633805"/>
+        </scene>
+        <!--ENES-->
+        <scene sceneID="smI-EZ-4mO">
+            <objects>
+                <viewController id="wP8-tS-cac" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Um2-lp-1cW">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2nd tb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xe8-hZ-vj4">
+                                <rect key="frame" x="102" y="301" width="188" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JTo-l1-7d0"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="ENES" image="heart.fill" catalog="system" id="jvU-TQ-lxf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itX-4E-vtc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4642" y="4"/>
+        </scene>
+        <!--DURU-->
+        <scene sceneID="5xQ-ik-Kzk">
+            <objects>
+                <viewController id="nKq-pC-aXN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DnP-gp-dvG">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3rd tb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7V-Vd-7jy">
+                                <rect key="frame" x="102" y="315" width="188" height="77"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Qd3-GE-SGd"/>
+                        <color key="backgroundColor" systemColor="systemGray4Color"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="DURU" image="person.circle.fill" catalog="system" id="1dj-vk-Xdd"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EJ2-RN-BMh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4642" y="744"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="c17-L6-K6x"/>
+        <segue reference="klc-3Y-0q2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="applelogo" catalog="system" width="105" height="128"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="house.fill" catalog="system" width="128" height="104"/>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

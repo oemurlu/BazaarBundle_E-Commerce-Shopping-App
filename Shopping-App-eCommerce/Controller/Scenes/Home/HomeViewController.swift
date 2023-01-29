@@ -17,4 +17,8 @@ class HomeViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        DuplicateFuncs.alertMessage(title: "ASd", message: "asdsad", vc: self)
+    }
+    
 }
