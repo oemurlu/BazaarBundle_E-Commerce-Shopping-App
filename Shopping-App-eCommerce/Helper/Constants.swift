@@ -9,4 +9,7 @@ struct K {
     static let loginToHome = "loginToHome"
     static let registerToLogin = "registerToLogin"
     static let forgotToLogin = "forgotToLogin"
+    
+    static let topCollectionViewNibNameAndIdentifier = "CategoriesCollectionViewCell"
+    static let bottomCollectionViewNibNameAndIdentifier = "ProductsCollectionViewCell"
 }

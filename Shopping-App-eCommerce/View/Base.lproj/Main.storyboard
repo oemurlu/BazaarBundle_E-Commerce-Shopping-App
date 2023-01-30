@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -67,16 +68,16 @@
             <objects>
                 <viewController storyboardIdentifier="loginVC" id="27X-u6-glH" customClass="LoginViewController" customModule="Shopping_App_eCommerce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gyn-9e-onl">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="entery our mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onE-Vc-NH8">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="yelag27219@bymercy.com" borderStyle="roundedRect" placeholder="entery our mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onE-Vc-NH8">
                                 <rect key="frame" x="51" y="421" width="290" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gv7-8G-ved">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="asdasd" borderStyle="roundedRect" placeholder="enter your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gv7-8G-ved">
                                 <rect key="frame" x="51" y="484" width="290" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -135,7 +136,7 @@
             <objects>
                 <viewController id="5PY-AO-QC6" customClass="ForgotPasswordViewController" customModule="Shopping_App_eCommerce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PDv-Lm-bLp">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reset your password via email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="veV-LK-CH2">
@@ -179,26 +180,99 @@
             <objects>
                 <viewController storyboardIdentifier="homeVC" id="oEm-fT-22V" customClass="HomeViewController" customModule="Shopping_App_eCommerce" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="homeVC" id="m68-Ew-9aT">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1st tb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mST-p5-R7n">
-                                <rect key="frame" x="102" y="376" width="188" height="77"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="x2H-Pb-Zdo">
+                                <rect key="frame" x="16" y="133" width="361" height="128"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hVo-Ei-J8F">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="4KJ-aH-XBs">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="v4P-a8-fPH">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="oEm-fT-22V" id="jop-lH-yma"/>
+                                    <outlet property="delegate" destination="oEm-fT-22V" id="dtr-gV-QUF"/>
+                                </connections>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="opp-rT-gTi">
+                                <rect key="frame" x="16" y="299" width="361" height="470"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Nfs-WC-ZHh">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Yi-C5-Rr4">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="pYu-9b-YIP">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="oEm-fT-22V" id="hf8-C4-S7h"/>
+                                    <outlet property="delegate" destination="oEm-fT-22V" id="LIk-sZ-O7r"/>
+                                </connections>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Categories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9x-RO-EZP">
+                                <rect key="frame" x="16" y="103" width="361" height="31"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Suggested Items" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qlk-Oo-NrE">
+                                <rect key="frame" x="16" y="260" width="361" height="31"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="yNg-8d-Jbp"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
+                        <constraints>
+                            <constraint firstItem="yNg-8d-Jbp" firstAttribute="bottom" secondItem="opp-rT-gTi" secondAttribute="bottom" id="2CW-pe-j90"/>
+                            <constraint firstItem="S9x-RO-EZP" firstAttribute="top" secondItem="yNg-8d-Jbp" secondAttribute="top" id="3lt-MA-jex"/>
+                            <constraint firstItem="yNg-8d-Jbp" firstAttribute="trailing" secondItem="qlk-Oo-NrE" secondAttribute="trailing" constant="16" id="F6G-GC-H0J"/>
+                            <constraint firstItem="yNg-8d-Jbp" firstAttribute="trailing" secondItem="S9x-RO-EZP" secondAttribute="trailing" constant="16" id="Hga-Xy-UP3"/>
+                            <constraint firstItem="x2H-Pb-Zdo" firstAttribute="height" secondItem="m68-Ew-9aT" secondAttribute="height" multiplier="0.150235" id="OuZ-q9-eTX"/>
+                            <constraint firstItem="opp-rT-gTi" firstAttribute="top" secondItem="qlk-Oo-NrE" secondAttribute="bottom" constant="8" symbolic="YES" id="PfE-tt-ITR"/>
+                            <constraint firstItem="yNg-8d-Jbp" firstAttribute="trailing" secondItem="opp-rT-gTi" secondAttribute="trailing" constant="16" id="Qaa-Pn-gLW"/>
+                            <constraint firstItem="opp-rT-gTi" firstAttribute="leading" secondItem="yNg-8d-Jbp" secondAttribute="leading" constant="16" id="WvM-tV-3wx"/>
+                            <constraint firstItem="yNg-8d-Jbp" firstAttribute="trailing" secondItem="x2H-Pb-Zdo" secondAttribute="trailing" constant="16" id="XaZ-q7-Yap"/>
+                            <constraint firstItem="x2H-Pb-Zdo" firstAttribute="leading" secondItem="yNg-8d-Jbp" secondAttribute="leading" constant="16" id="f2E-hy-PxR"/>
+                            <constraint firstItem="qlk-Oo-NrE" firstAttribute="leading" secondItem="yNg-8d-Jbp" secondAttribute="leading" constant="16" id="jYw-Eg-Lq9"/>
+                            <constraint firstItem="qlk-Oo-NrE" firstAttribute="top" secondItem="x2H-Pb-Zdo" secondAttribute="bottom" id="pXT-8h-IqN"/>
+                            <constraint firstItem="S9x-RO-EZP" firstAttribute="leading" secondItem="yNg-8d-Jbp" secondAttribute="leading" constant="16" id="pak-Qx-znF"/>
+                            <constraint firstItem="x2H-Pb-Zdo" firstAttribute="top" secondItem="S9x-RO-EZP" secondAttribute="bottom" id="sxl-9z-GHc"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="OSMAN" image="house.fill" catalog="system" id="0Jm-yg-kgh"/>
                     <navigationItem key="navigationItem" id="o2G-kA-FJN"/>
+                    <connections>
+                        <outlet property="bottomCollectionView" destination="opp-rT-gTi" id="YZb-BU-gLC"/>
+                        <outlet property="topCollectionView" destination="x2H-Pb-Zdo" id="WOa-CL-NWS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hzt-Lz-Icx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4642" y="-739"/>
+            <point key="canvasLocation" x="4641.9847328244277" y="-739.43661971830988"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="GnO-Yp-ZhC">
@@ -332,7 +406,7 @@
             <objects>
                 <viewController id="wP8-tS-cac" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Um2-lp-1cW">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2nd tb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xe8-hZ-vj4">
@@ -357,7 +431,7 @@
             <objects>
                 <viewController id="nKq-pC-aXN" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DnP-gp-dvG">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3rd tb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7V-Vd-7jy">
@@ -379,7 +453,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wYM-eM-IRP"/>
+        <segue reference="sBw-YZ-dam"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="applelogo" catalog="system" width="105" height="128"/>
@@ -391,6 +465,9 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
