@@ -35,7 +35,7 @@ class LoginViewController: UIViewController {
                     if self.isEmailVerified() {
                         DuplicateFuncs.alertMessage(title: "Email not verified", message: "Please verify your e-mail", vc: self)
                     } else {
-                        self.performSegue(withIdentifier: K.loginToHome, sender: self)
+                        self.performSegue(withIdentifier: K.Segues.loginToHome, sender: self)
                     }
 
                 }

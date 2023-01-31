@@ -13,8 +13,6 @@
 		B600791D298406E7002A1CFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B600791C298406E7002A1CFF /* Assets.xcassets */; };
 		B6007920298406E7002A1CFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B600791E298406E7002A1CFF /* LaunchScreen.storyboard */; };
 		B600792829842A90002A1CFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B600792729842A90002A1CFF /* GoogleService-Info.plist */; };
-		B600792B29842C6C002A1CFF /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = B600792A29842C6C002A1CFF /* FirebaseAnalytics */; };
-		B600792D29842C6C002A1CFF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B600792C29842C6C002A1CFF /* FirebaseAuth */; };
 		B6007938298430A8002A1CFF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6007937298430A8002A1CFF /* RegisterViewController.swift */; };
 		B600793A298430B4002A1CFF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6007939298430B4002A1CFF /* LoginViewController.swift */; };
 		B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600793B29843A40002A1CFF /* HomeViewController.swift */; };
@@ -27,7 +25,11 @@
 		B6D445452987BBBF00C22041 /* BottomCollectionViewColumnFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D445442987BBBF00C22041 /* BottomCollectionViewColumnFlowLayout.swift */; };
 		B6D445482987BC0900C22041 /* ProductsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D445462987BC0900C22041 /* ProductsCollectionViewCell.swift */; };
 		B6D445492987BC0900C22041 /* ProductsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D445472987BC0900C22041 /* ProductsCollectionViewCell.xib */; };
-		B6D4454B2987D70600C22041 /* Urun.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4454A2987D70600C22041 /* Urun.swift */; };
+		B6D4454B2987D70600C22041 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4454A2987D70600C22041 /* ProductModel.swift */; };
+		B6D4454E29881C0700C22041 /* ProductData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4454D29881C0700C22041 /* ProductData.swift */; };
+		B6D445512988405500C22041 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B6D445502988405500C22041 /* FirebaseAuth */; };
+		B6D445532988405500C22041 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B6D445522988405500C22041 /* FirebaseFirestoreSwift */; };
+		B6D445592988E5F100C22041 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B6D445582988E5F100C22041 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +53,8 @@
 		B6D445442987BBBF00C22041 /* BottomCollectionViewColumnFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomCollectionViewColumnFlowLayout.swift; sourceTree = "<group>"; };
 		B6D445462987BC0900C22041 /* ProductsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewCell.swift; sourceTree = "<group>"; };
 		B6D445472987BC0900C22041 /* ProductsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductsCollectionViewCell.xib; sourceTree = "<group>"; };
-		B6D4454A2987D70600C22041 /* Urun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Urun.swift; sourceTree = "<group>"; };
+		B6D4454A2987D70600C22041 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		B6D4454D29881C0700C22041 /* ProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +62,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B600792B29842C6C002A1CFF /* FirebaseAnalytics in Frameworks */,
-				B600792D29842C6C002A1CFF /* FirebaseAuth in Frameworks */,
+				B6D445592988E5F100C22041 /* Alamofire in Frameworks */,
+				B6D445512988405500C22041 /* FirebaseAuth in Frameworks */,
+				B6D445532988405500C22041 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +110,8 @@
 		B600792F29842F79002A1CFF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B6D4454A2987D70600C22041 /* Urun.swift */,
+				B6D4454A2987D70600C22041 /* ProductModel.swift */,
+				B6D4454D29881C0700C22041 /* ProductData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -231,8 +236,9 @@
 			);
 			name = "Shopping-App-eCommerce";
 			packageProductDependencies = (
-				B600792A29842C6C002A1CFF /* FirebaseAnalytics */,
-				B600792C29842C6C002A1CFF /* FirebaseAuth */,
+				B6D445502988405500C22041 /* FirebaseAuth */,
+				B6D445522988405500C22041 /* FirebaseFirestoreSwift */,
+				B6D445582988E5F100C22041 /* Alamofire */,
 			);
 			productName = "Shopping-App-eCommerce";
 			productReference = B6007910298406E6002A1CFF /* Shopping-App-eCommerce.app */;
@@ -263,7 +269,8 @@
 			);
 			mainGroup = B6007907298406E6002A1CFF;
 			packageReferences = (
-				B600792929842C6C002A1CFF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B6D4454F2988405500C22041 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				B6D445572988E5F100C22041 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B6007911298406E6002A1CFF /* Products */;
 			projectDirPath = "";
@@ -307,7 +314,8 @@
 				B600793E29845D43002A1CFF /* Constants.swift in Sources */,
 				B6007938298430A8002A1CFF /* RegisterViewController.swift in Sources */,
 				B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */,
-				B6D4454B2987D70600C22041 /* Urun.swift in Sources */,
+				B6D4454B2987D70600C22041 /* ProductModel.swift in Sources */,
+				B6D4454E29881C0700C22041 /* ProductData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,7 +535,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		B600792929842C6C002A1CFF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		B6D4454F2988405500C22041 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -535,18 +543,31 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		B6D445572988E5F100C22041 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B600792A29842C6C002A1CFF /* FirebaseAnalytics */ = {
+		B6D445502988405500C22041 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = B600792929842C6C002A1CFF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		B600792C29842C6C002A1CFF /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = B600792929842C6C002A1CFF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = B6D4454F2988405500C22041 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		B6D445522988405500C22041 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6D4454F2988405500C22041 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		B6D445582988E5F100C22041 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6D445572988E5F100C22041 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

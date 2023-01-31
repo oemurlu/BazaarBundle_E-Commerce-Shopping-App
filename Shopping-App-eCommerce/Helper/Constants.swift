@@ -6,10 +6,18 @@
 //
 
 struct K {
-    static let loginToHome = "loginToHome"
-    static let registerToLogin = "registerToLogin"
-    static let forgotToLogin = "forgotToLogin"
+    struct Segues {
+        static let loginToHome = "loginToHome"
+        static let registerToLogin = "registerToLogin"
+        static let forgotToLogin = "forgotToLogin"
+    }
     
-    static let topCollectionViewNibNameAndIdentifier = "CategoriesCollectionViewCell"
-    static let bottomCollectionViewNibNameAndIdentifier = "ProductsCollectionViewCell"
+    struct CollectionViews {
+        static let topCollectionViewNibNameAndIdentifier = "CategoriesCollectionViewCell"
+        static let bottomCollectionViewNibNameAndIdentifier = "ProductsCollectionViewCell"
+    }
+    
+    struct Network {
+        static let baseURL = "https://fakestoreapi.com/products"
+    }
 }

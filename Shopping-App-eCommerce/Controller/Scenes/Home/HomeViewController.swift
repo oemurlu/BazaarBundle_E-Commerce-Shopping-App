@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+
 
 class HomeViewController: UIViewController {
 
@@ -14,37 +16,68 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var bottomCollectionView: UICollectionView!
     
     var liste = ["Electronic", "Jewelery", "Men's Clothing", "Women's Clothing"]
-    var urunListesi: [Urun] = []
+    var urunListesi: [ProductModel] = []
+//    var propertyList =  [Product]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        urunOlustur() //TEST ICIN
+        fetchProducts()
         collectionSetup()
-        urunOlustur() //TEST
-
+        
+        
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
+
+    
+    //MARK: - Networking
+    func fetchProducts() {
+        AF.request(K.Network.baseURL).response { response in
+        switch response.result {
+        case .success(_):
+            do {
+                let productData = try JSONDecoder().decode([ProductData].self, from: response.data!)
+                for data in productData {
+                    self.urunListesi.append(ProductModel(title: data.title, price: Float(data.price), image: data.image, rate: Float(data.rating.rate)))
+                    DispatchQueue.main.async {
+                        self.bottomCollectionView.reloadData()
+                    }
+                }
+                //TODO: reload collectionView or tableView with products data
+                } catch
+                let error {
+                    print(error)
+                }
+                case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
+
+
     
     //MARK: - urun olustur
     func urunOlustur() {
         
         //TEST ITEMS
-        var u = Urun(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
+        var u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
         urunListesi.append(u)
-        u = Urun(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
+        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
         urunListesi.append(u)
-        u = Urun(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
+        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
         urunListesi.append(u)
-        u = Urun(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
+        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
         urunListesi.append(u)
-        u = Urun(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
+        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
         urunListesi.append(u)
-        u = Urun(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
+        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
         urunListesi.append(u)
-        u = Urun(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
+        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
         urunListesi.append(u)
-        u = Urun(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
+        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
         urunListesi.append(u)
         
     }
@@ -53,12 +86,12 @@ class HomeViewController: UIViewController {
     
     //MARK: - CollectionCells Setup
     private func collectionSetup() {
-        topCollectionView.register(UINib(nibName: K.topCollectionViewNibNameAndIdentifier, bundle: nil), forCellWithReuseIdentifier: K.topCollectionViewNibNameAndIdentifier)
+        topCollectionView.register(UINib(nibName: K.CollectionViews.topCollectionViewNibNameAndIdentifier, bundle: nil), forCellWithReuseIdentifier: K.CollectionViews.topCollectionViewNibNameAndIdentifier)
         
         topCollectionView.collectionViewLayout = TopCollectionViewColumnFlowLayout(sutunSayisi: 2, minSutunAraligi: 5, minSatirAraligi: 5)
         
         
-        bottomCollectionView.register(UINib(nibName: K.bottomCollectionViewNibNameAndIdentifier, bundle: nil), forCellWithReuseIdentifier: K.bottomCollectionViewNibNameAndIdentifier)
+        bottomCollectionView.register(UINib(nibName: K.CollectionViews.bottomCollectionViewNibNameAndIdentifier, bundle: nil), forCellWithReuseIdentifier: K.CollectionViews.bottomCollectionViewNibNameAndIdentifier)
         
         bottomCollectionView.collectionViewLayout = BottomCollectionViewColumnFlowLayout(sutunSayisi: 2, minSutunAraligi: 5, minSatirAraligi: 5)
     }
@@ -83,6 +116,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case topCollectionView:
             return liste.count
         case bottomCollectionView:
+            print(urunListesi.count)
             return urunListesi.count
         default:
             return 0
@@ -92,13 +126,13 @@ extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case topCollectionView:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.topCollectionViewNibNameAndIdentifier, for: indexPath) as! CategoriesCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CollectionViews.topCollectionViewNibNameAndIdentifier, for: indexPath) as! CategoriesCollectionViewCell
             cell.categoryLabel.text = liste[indexPath.row]
             return cell
         case bottomCollectionView:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.bottomCollectionViewNibNameAndIdentifier, for: indexPath) as! ProductsCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CollectionViews.bottomCollectionViewNibNameAndIdentifier, for: indexPath) as! ProductsCollectionViewCell
             let u = urunListesi[indexPath.row]
-            cell.productImageView.image = UIImage(named: u.image!)
+            cell.productImageView.image = UIImage(named: "test1.jpg")
             cell.productNameLabel.text = u.title
             cell.productRateLabel.text = "⭐️ \(u.rate!) "
             cell.productPriceLabe.text = "\(u.price!)$"

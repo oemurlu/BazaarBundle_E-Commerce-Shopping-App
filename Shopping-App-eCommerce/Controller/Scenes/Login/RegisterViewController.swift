@@ -52,7 +52,7 @@ class RegisterViewController: UIViewController {
                     } else {
                         self.sendVerificationMail()
                         DuplicateFuncs.alertMessageWithHandler(title: "Verify your email", message: "Verification mail sent", vc: self) {
-                            self.performSegue(withIdentifier: K.registerToLogin, sender: self)
+                            self.performSegue(withIdentifier: K.Segues.registerToLogin, sender: self)
                         }
                     }
                 }

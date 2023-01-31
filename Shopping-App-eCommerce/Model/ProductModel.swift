@@ -7,11 +7,9 @@
 
 import Foundation
 
-struct Urun {
-    
+struct ProductModel {
     var title: String?
     var price: Float?
     var image: String?
     var rate: Float?
-    
 }
