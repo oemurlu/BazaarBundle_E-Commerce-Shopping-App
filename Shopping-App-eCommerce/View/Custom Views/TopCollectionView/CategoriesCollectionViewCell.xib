@@ -10,33 +10,45 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CategoriesCollectionViewCell" id="gTV-IL-0wX" customClass="CategoriesCollectionViewCell" customModule="Shopping_App_eCommerce" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="180" height="60"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="150" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="180" height="60"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="asdasdasdasdaadssadas" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZW-ef-jJB">
-                        <rect key="frame" x="43" y="8" width="107" height="35"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="asdas asda sadd asdsad asasda" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZW-ef-jJB">
+                        <rect key="frame" x="50" y="6" width="123" height="48"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tshirt.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Baw-St-cAh">
-                        <rect key="frame" x="5" y="8" width="35" height="35"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="tshirt.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Baw-St-cAh">
+                        <rect key="frame" x="6" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="fyO-uv-Qkd"/>
+                        </constraints>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" red="0.20392156859999999" green="0.8862745098" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
-            <size key="customSize" width="150" height="50"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="GZW-ef-jJB" firstAttribute="leading" secondItem="Baw-St-cAh" secondAttribute="trailing" constant="4" id="CXq-In-ZRW"/>
+                <constraint firstItem="GZW-ef-jJB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="OrE-Ns-DQW"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="Baw-St-cAh" secondAttribute="bottom" constant="10" id="Qc0-8X-wWz"/>
+                <constraint firstItem="Baw-St-cAh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="V27-qQ-DeS"/>
+                <constraint firstItem="Baw-St-cAh" firstAttribute="centerY" secondItem="GZW-ef-jJB" secondAttribute="centerY" id="Wng-b0-QHF"/>
+                <constraint firstItem="Baw-St-cAh" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="Y5L-TW-j31"/>
+                <constraint firstAttribute="trailing" secondItem="GZW-ef-jJB" secondAttribute="trailing" constant="7" id="ZYg-fa-AHn"/>
+                <constraint firstItem="Baw-St-cAh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="dyo-fj-BVK"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="GZW-ef-jJB" secondAttribute="bottom" constant="6" id="pbX-5T-eIu"/>
+            </constraints>
+            <size key="customSize" width="180" height="60"/>
             <connections>
                 <outlet property="categoryImageView" destination="Baw-St-cAh" id="Txv-Qs-fdS"/>
                 <outlet property="categoryLabel" destination="GZW-ef-jJB" id="Gnm-VF-mDE"/>
             </connections>
-            <point key="canvasLocation" x="141.98473282442748" y="19.718309859154932"/>
+            <point key="canvasLocation" x="175.57251908396947" y="12.67605633802817"/>
         </collectionViewCell>
     </objects>
     <resources>

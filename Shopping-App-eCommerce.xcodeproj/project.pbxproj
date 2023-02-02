@@ -30,6 +30,10 @@
 		B6D445512988405500C22041 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = B6D445502988405500C22041 /* FirebaseAuth */; };
 		B6D445532988405500C22041 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B6D445522988405500C22041 /* FirebaseFirestoreSwift */; };
 		B6D445592988E5F100C22041 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B6D445582988E5F100C22041 /* Alamofire */; };
+		B6D4455F29890CAB00C22041 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = B6D4455E29890CAB00C22041 /* SDWebImage */; };
+		B6D445662989179B00C22041 /* CategorizedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D445652989179B00C22041 /* CategorizedViewController.swift */; };
+		B6D4456A298917DC00C22041 /* CategorizedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D44568298917DC00C22041 /* CategorizedTableViewCell.swift */; };
+		B6D4456B298917DC00C22041 /* CategorizedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6D44569298917DC00C22041 /* CategorizedTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +59,9 @@
 		B6D445472987BC0900C22041 /* ProductsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductsCollectionViewCell.xib; sourceTree = "<group>"; };
 		B6D4454A2987D70600C22041 /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		B6D4454D29881C0700C22041 /* ProductData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductData.swift; sourceTree = "<group>"; };
+		B6D445652989179B00C22041 /* CategorizedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedViewController.swift; sourceTree = "<group>"; };
+		B6D44568298917DC00C22041 /* CategorizedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorizedTableViewCell.swift; sourceTree = "<group>"; };
+		B6D44569298917DC00C22041 /* CategorizedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorizedTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +71,7 @@
 			files = (
 				B6D445592988E5F100C22041 /* Alamofire in Frameworks */,
 				B6D445512988405500C22041 /* FirebaseAuth in Frameworks */,
+				B6D4455F29890CAB00C22041 /* SDWebImage in Frameworks */,
 				B6D445532988405500C22041 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,8 +118,7 @@
 		B600792F29842F79002A1CFF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B6D4454A2987D70600C22041 /* ProductModel.swift */,
-				B6D4454D29881C0700C22041 /* ProductData.swift */,
+				B6A232DC29898477000AD9B8 /* Product */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,10 +126,19 @@
 		B600793029842F83002A1CFF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B6D4453B298709EF00C22041 /* Custom Views */,
 				B6007919298406E6002A1CFF /* Main.storyboard */,
+				B6D4453B298709EF00C22041 /* Custom Views */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B6A232DC29898477000AD9B8 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				B6D4454A2987D70600C22041 /* ProductModel.swift */,
+				B6D4454D29881C0700C22041 /* ProductData.swift */,
+			);
+			path = Product;
 			sourceTree = "<group>";
 		};
 		B6D4452B2984F7C100C22041 /* Helper */ = {
@@ -141,6 +157,7 @@
 				B6D445372985BA3600C22041 /* Home */,
 				B6D445382985BA4C00C22041 /* Basket */,
 				B6D445392985BA5700C22041 /* Profile */,
+				B6D445602989173C00C22041 /* Categorized */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -193,6 +210,7 @@
 		B6D4453B298709EF00C22041 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				B6D44567298917BF00C22041 /* CategorizedTableView */,
 				B6D445402987928F00C22041 /* TopCollectionView */,
 				B6D44541298792A800C22041 /* BottomCollectionView */,
 			);
@@ -219,6 +237,23 @@
 			path = BottomCollectionView;
 			sourceTree = "<group>";
 		};
+		B6D445602989173C00C22041 /* Categorized */ = {
+			isa = PBXGroup;
+			children = (
+				B6D445652989179B00C22041 /* CategorizedViewController.swift */,
+			);
+			path = Categorized;
+			sourceTree = "<group>";
+		};
+		B6D44567298917BF00C22041 /* CategorizedTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B6D44568298917DC00C22041 /* CategorizedTableViewCell.swift */,
+				B6D44569298917DC00C22041 /* CategorizedTableViewCell.xib */,
+			);
+			path = CategorizedTableView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +274,7 @@
 				B6D445502988405500C22041 /* FirebaseAuth */,
 				B6D445522988405500C22041 /* FirebaseFirestoreSwift */,
 				B6D445582988E5F100C22041 /* Alamofire */,
+				B6D4455E29890CAB00C22041 /* SDWebImage */,
 			);
 			productName = "Shopping-App-eCommerce";
 			productReference = B6007910298406E6002A1CFF /* Shopping-App-eCommerce.app */;
@@ -271,6 +307,7 @@
 			packageReferences = (
 				B6D4454F2988405500C22041 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				B6D445572988E5F100C22041 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B6D4455D29890CAB00C22041 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = B6007911298406E6002A1CFF /* Products */;
 			projectDirPath = "";
@@ -290,6 +327,7 @@
 				B6007920298406E7002A1CFF /* LaunchScreen.storyboard in Resources */,
 				B6D4453F29870A4800C22041 /* CategoriesCollectionViewCell.xib in Resources */,
 				B600792829842A90002A1CFF /* GoogleService-Info.plist in Resources */,
+				B6D4456B298917DC00C22041 /* CategorizedTableViewCell.xib in Resources */,
 				B600791D298406E7002A1CFF /* Assets.xcassets in Resources */,
 				B600791B298406E6002A1CFF /* Main.storyboard in Resources */,
 			);
@@ -309,11 +347,13 @@
 				B6D4452E2984F7E300C22041 /* DuplicateFuncs.swift in Sources */,
 				B6007916298406E6002A1CFF /* SceneDelegate.swift in Sources */,
 				B6D445452987BBBF00C22041 /* BottomCollectionViewColumnFlowLayout.swift in Sources */,
+				B6D445662989179B00C22041 /* CategorizedViewController.swift in Sources */,
 				B600793A298430B4002A1CFF /* LoginViewController.swift in Sources */,
 				B6D44534298578C800C22041 /* ForgotPasswordViewController.swift in Sources */,
 				B600793E29845D43002A1CFF /* Constants.swift in Sources */,
 				B6007938298430A8002A1CFF /* RegisterViewController.swift in Sources */,
 				B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */,
+				B6D4456A298917DC00C22041 /* CategorizedTableViewCell.swift in Sources */,
 				B6D4454B2987D70600C22041 /* ProductModel.swift in Sources */,
 				B6D4454E29881C0700C22041 /* ProductData.swift in Sources */,
 			);
@@ -468,8 +508,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -496,8 +535,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -551,6 +589,14 @@
 				kind = branch;
 			};
 		};
+		B6D4455D29890CAB00C22041 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -568,6 +614,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B6D445572988E5F100C22041 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		B6D4455E29890CAB00C22041 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B6D4455D29890CAB00C22041 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,31 +7,26 @@
 
 import UIKit
 import Alamofire
-
+import SDWebImage
 
 class HomeViewController: UIViewController {
-
+  
     //MARK: - Properties
     @IBOutlet weak var topCollectionView: UICollectionView!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
     
-    var liste = ["Electronic", "Jewelery", "Men's Clothing", "Women's Clothing"]
-    var urunListesi: [ProductModel] = []
-//    var propertyList =  [Product]()
-    
-    
+    var liste = ["electronics", "jewelery", "men's clothing", "women's clothing"]
+    static var productList: [ProductModel] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        urunOlustur() //TEST ICIN
-        fetchProducts()
         collectionSetup()
-        
-        
+        fetchProducts()
+
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
 
-    
     //MARK: - Networking
     func fetchProducts() {
         AF.request(K.Network.baseURL).response { response in
@@ -40,12 +35,14 @@ class HomeViewController: UIViewController {
             do {
                 let productData = try JSONDecoder().decode([ProductData].self, from: response.data!)
                 for data in productData {
-                    self.urunListesi.append(ProductModel(title: data.title, price: Float(data.price), image: data.image, rate: Float(data.rating.rate)))
+                    //topVC
+                    
+                    //bottomVC
+                    HomeViewController.productList.append(ProductModel(title: data.title, price: Float(data.price), image: data.image, rate: Float(data.rating.rate), category: data.category, description: data.description))
                     DispatchQueue.main.async {
                         self.bottomCollectionView.reloadData()
                     }
                 }
-                //TODO: reload collectionView or tableView with products data
                 } catch
                 let error {
                     print(error)
@@ -55,34 +52,6 @@ class HomeViewController: UIViewController {
             }
         }
     }
-
-
-
-    
-    //MARK: - urun olustur
-    func urunOlustur() {
-        
-        //TEST ITEMS
-        var u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
-        urunListesi.append(u)
-        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
-        urunListesi.append(u)
-        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
-        urunListesi.append(u)
-        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
-        urunListesi.append(u)
-        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
-        urunListesi.append(u)
-        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
-        urunListesi.append(u)
-        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
-        urunListesi.append(u)
-        u = ProductModel(title: "uzun kollu v yaka body erkek harika ", price: 239.99, image: "test1.jpg", rate: 4.8)
-        urunListesi.append(u)
-        
-    }
-    
-    
     
     //MARK: - CollectionCells Setup
     private func collectionSetup() {
@@ -96,28 +65,24 @@ class HomeViewController: UIViewController {
         bottomCollectionView.collectionViewLayout = BottomCollectionViewColumnFlowLayout(sutunSayisi: 2, minSutunAraligi: 5, minSatirAraligi: 5)
     }
     
-    
-    
+    func changeVCcategoryToTableView(category: String) {
+        CategorizedViewController.selectedCategory = category
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Segues.categoryTableView)
+        show(vc, sender: self)
+
+    }
 }
 
 //MARK: - Extensions
-extension HomeViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //
-    }
-    
-}
-
 extension HomeViewController: UICollectionViewDataSource {
-    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case topCollectionView:
             return liste.count
         case bottomCollectionView:
-            print(urunListesi.count)
-            return urunListesi.count
+            return HomeViewController.productList.count
         default:
             return 0
         }
@@ -131,14 +96,39 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         case bottomCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CollectionViews.bottomCollectionViewNibNameAndIdentifier, for: indexPath) as! ProductsCollectionViewCell
-            let u = urunListesi[indexPath.row]
-            cell.productImageView.image = UIImage(named: "test1.jpg")
+            let u = HomeViewController.productList[indexPath.row]
+            cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(named: "cingeneford.png"))
             cell.productNameLabel.text = u.title
             cell.productRateLabel.text = "⭐️ \(u.rate!) "
             cell.productPriceLabe.text = "\(u.price!)$"
             return cell
         default:
             return UICollectionViewCell()
+        }
+    }
+}
+
+
+extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case topCollectionView:
+            switch indexPath.row {
+            case 0:
+                changeVCcategoryToTableView(category: "electronics")
+            case 1:
+                changeVCcategoryToTableView(category: "jewelery")
+            case 2:
+                changeVCcategoryToTableView(category: "men's clothing")
+            case 3:
+                changeVCcategoryToTableView(category: "women's clothing")
+            default:
+                break
+            }
+        case bottomCollectionView:
+            let obj = ProductsCollectionViewCell()
+        default:
+            break
         }
     }
 }

@@ -12,4 +12,6 @@ struct ProductModel {
     var price: Float?
     var image: String?
     var rate: Float?
+    var category: String?
+    var description: String?
 }

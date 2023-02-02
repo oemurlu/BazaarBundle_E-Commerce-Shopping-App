@@ -13,7 +13,7 @@ struct ProductData: Codable {
     let price: Double
     let description: String
     let image: String
-    let category: Category
+    let category: String
     let rating: Rating
 }
 
@@ -22,10 +22,10 @@ struct Rating: Codable {
     let count: Int
 }
 
-enum Category: String, Codable {
-    case electronics = "electronics"
-    case jewelery = "jewelery"
-    case menSClothing = "men's clothing"
-    case womenSClothing = "women's clothing"
-}
+//enum Category: String, Codable {
+//    case electronics = "electronics"
+//    case jewelery = "jewelery"
+//    case menSClothing = "men's clothing"
+//    case womenSClothing = "women's clothing"
+//}
 

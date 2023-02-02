@@ -10,6 +10,7 @@ struct K {
         static let loginToHome = "loginToHome"
         static let registerToLogin = "registerToLogin"
         static let forgotToLogin = "forgotToLogin"
+        static let categoryTableView = "CategoryTableViewVC"
     }
     
     struct CollectionViews {
@@ -20,4 +21,9 @@ struct K {
     struct Network {
         static let baseURL = "https://fakestoreapi.com/products"
     }
+    
+    struct TableView {
+        static let categorizedTableViewCell = "CategorizedTableViewCell"
+    }
+    
 }
