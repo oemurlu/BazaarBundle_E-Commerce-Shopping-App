@@ -11,6 +11,7 @@ struct K {
         static let registerToLogin = "registerToLogin"
         static let forgotToLogin = "forgotToLogin"
         static let categoryTableView = "CategoryTableViewVC"
+        static let productDetailViewController = "productDetailViewController"
     }
     
     struct CollectionViews {
@@ -24,6 +25,7 @@ struct K {
     
     struct TableView {
         static let categorizedTableViewCell = "CategorizedTableViewCell"
+        static let basketTableViewCell = "BasketTableViewCell"
     }
     
 }

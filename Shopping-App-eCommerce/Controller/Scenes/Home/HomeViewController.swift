@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
                     //topVC
                     
                     //bottomVC
-                    HomeViewController.productList.append(ProductModel(title: data.title, price: Float(data.price), image: data.image, rate: Float(data.rating.rate), category: data.category, description: data.description))
+                    HomeViewController.productList.append(ProductModel(id: data.id, title: data.title, price: Float(data.price), image: data.image, rate: Float(data.rating.rate), category: data.category, description: data.description, count: data.rating.count))
                     DispatchQueue.main.async {
                         self.bottomCollectionView.reloadData()
                     }
@@ -69,6 +69,14 @@ class HomeViewController: UIViewController {
         CategorizedViewController.selectedCategory = category
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: K.Segues.categoryTableView)
+        show(vc, sender: self)
+
+    }
+    
+    func changeVCHomeToProductDetail(id: Int) {
+        ProductDetailViewController.selectedProductID = id
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: K.Segues.productDetailViewController)
         show(vc, sender: self)
 
     }
@@ -126,7 +134,10 @@ extension HomeViewController: UICollectionViewDelegate {
                 break
             }
         case bottomCollectionView:
-            let obj = ProductsCollectionViewCell()
+            print(HomeViewController.productList[indexPath.row].price!)
+            if let id = HomeViewController.productList[indexPath.row].id {
+                changeVCHomeToProductDetail(id: id)
+        }
         default:
             break
         }

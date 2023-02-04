@@ -17,6 +17,10 @@
 		B600793A298430B4002A1CFF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6007939298430B4002A1CFF /* LoginViewController.swift */; };
 		B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600793B29843A40002A1CFF /* HomeViewController.swift */; };
 		B600793E29845D43002A1CFF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B600793D29845D43002A1CFF /* Constants.swift */; };
+		B644E048298D388F005E794A /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644E047298D388F005E794A /* ProductDetailViewController.swift */; };
+		B644E04A298D69C9005E794A /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644E049298D69C9005E794A /* BasketViewController.swift */; };
+		B644E04E298E3EB5005E794A /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644E04C298E3EB5005E794A /* BasketTableViewCell.swift */; };
+		B644E04F298E3EB5005E794A /* BasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B644E04D298E3EB5005E794A /* BasketTableViewCell.xib */; };
 		B6D4452E2984F7E300C22041 /* DuplicateFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4452D2984F7E300C22041 /* DuplicateFuncs.swift */; };
 		B6D44534298578C800C22041 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */; };
 		B6D4453E29870A4800C22041 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4453C29870A4800C22041 /* CategoriesCollectionViewCell.swift */; };
@@ -49,6 +53,10 @@
 		B6007939298430B4002A1CFF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B600793B29843A40002A1CFF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B600793D29845D43002A1CFF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B644E047298D388F005E794A /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		B644E049298D69C9005E794A /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
+		B644E04C298E3EB5005E794A /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
+		B644E04D298E3EB5005E794A /* BasketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketTableViewCell.xib; sourceTree = "<group>"; };
 		B6D4452D2984F7E300C22041 /* DuplicateFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateFuncs.swift; sourceTree = "<group>"; };
 		B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B6D4453C29870A4800C22041 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -132,6 +140,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B644E046298D3865005E794A /* ProductDetail */ = {
+			isa = PBXGroup;
+			children = (
+				B644E047298D388F005E794A /* ProductDetailViewController.swift */,
+			);
+			path = ProductDetail;
+			sourceTree = "<group>";
+		};
+		B644E04B298E3E75005E794A /* BasketTableView */ = {
+			isa = PBXGroup;
+			children = (
+				B644E04C298E3EB5005E794A /* BasketTableViewCell.swift */,
+				B644E04D298E3EB5005E794A /* BasketTableViewCell.xib */,
+			);
+			path = BasketTableView;
+			sourceTree = "<group>";
+		};
 		B6A232DC29898477000AD9B8 /* Product */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +182,7 @@
 				B6D445372985BA3600C22041 /* Home */,
 				B6D445382985BA4C00C22041 /* Basket */,
 				B6D445392985BA5700C22041 /* Profile */,
+				B644E046298D3865005E794A /* ProductDetail */,
 				B6D445602989173C00C22041 /* Categorized */,
 			);
 			path = Scenes;
@@ -183,6 +209,7 @@
 		B6D445382985BA4C00C22041 /* Basket */ = {
 			isa = PBXGroup;
 			children = (
+				B644E049298D69C9005E794A /* BasketViewController.swift */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -213,6 +240,7 @@
 				B6D44567298917BF00C22041 /* CategorizedTableView */,
 				B6D445402987928F00C22041 /* TopCollectionView */,
 				B6D44541298792A800C22041 /* BottomCollectionView */,
+				B644E04B298E3E75005E794A /* BasketTableView */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -328,6 +356,7 @@
 				B6D4453F29870A4800C22041 /* CategoriesCollectionViewCell.xib in Resources */,
 				B600792829842A90002A1CFF /* GoogleService-Info.plist in Resources */,
 				B6D4456B298917DC00C22041 /* CategorizedTableViewCell.xib in Resources */,
+				B644E04F298E3EB5005E794A /* BasketTableViewCell.xib in Resources */,
 				B600791D298406E7002A1CFF /* Assets.xcassets in Resources */,
 				B600791B298406E6002A1CFF /* Main.storyboard in Resources */,
 			);
@@ -340,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B644E04A298D69C9005E794A /* BasketViewController.swift in Sources */,
 				B6D445482987BC0900C22041 /* ProductsCollectionViewCell.swift in Sources */,
 				B6D44543298792FD00C22041 /* TopCollectionViewColumnFlowLayout.swift in Sources */,
 				B6D4453E29870A4800C22041 /* CategoriesCollectionViewCell.swift in Sources */,
@@ -347,9 +377,11 @@
 				B6D4452E2984F7E300C22041 /* DuplicateFuncs.swift in Sources */,
 				B6007916298406E6002A1CFF /* SceneDelegate.swift in Sources */,
 				B6D445452987BBBF00C22041 /* BottomCollectionViewColumnFlowLayout.swift in Sources */,
+				B644E04E298E3EB5005E794A /* BasketTableViewCell.swift in Sources */,
 				B6D445662989179B00C22041 /* CategorizedViewController.swift in Sources */,
 				B600793A298430B4002A1CFF /* LoginViewController.swift in Sources */,
 				B6D44534298578C800C22041 /* ForgotPasswordViewController.swift in Sources */,
+				B644E048298D388F005E794A /* ProductDetailViewController.swift in Sources */,
 				B600793E29845D43002A1CFF /* Constants.swift in Sources */,
 				B6007938298430A8002A1CFF /* RegisterViewController.swift in Sources */,
 				B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */,
