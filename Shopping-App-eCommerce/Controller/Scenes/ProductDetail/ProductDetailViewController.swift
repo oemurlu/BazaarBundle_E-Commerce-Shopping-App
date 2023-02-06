@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 import SDWebImage
 
 class ProductDetailViewController: UIViewController {
@@ -21,35 +22,40 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var quantitityLabel: UILabel!
     
     static var selectedProductID: Int  = 0
-    static var filteredProduct: [ProductModel] = []
-    
     
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        filterProduct(id: ProductDetailViewController.selectedProductID)
-        // Do any additional setup after loading the view.
+        fetchCategoryProducts(selectedId: ProductDetailViewController.selectedProductID)
     }
     
     //MARK: - Functions
     @IBAction func addBasketButtonClicked(_ sender: UIButton) {
     }
     
-    
-    // Tekrardan model yazip API istek gondermek yerine tum urunleri zaten cekmistim. O yuzden filtreleme yapacagim cekilen urunde.
-    func filterProduct(id: Int) {
-        for product in HomeViewController.productList {
-            if let productId = product.id {
-                if productId == id {
-                    productImage.sd_setImage(with: URL(string: product.image!), placeholderImage: UIImage(named: "test1.jpg"))
-                    productTitle.text = product.title
-                    productDescription.text = product.description
-                    productSalesCount.text = "\(product.count ?? -1) sold"
-                    productRate.text = "⭐️\(product.rate ?? 0)"
-                    productPrice.text = "$\(product.price ?? -1)"
-                }
-            }
-        }
-    }
+    func fetchCategoryProducts(selectedId: Int) {
+//        print("\(K.Network.categoryURL)/\(category)")
+        AF.request("\(K.Network.baseURL)/\(selectedId)").response { response in
+       switch response.result {
+       case .success(_):
+           do {
+               let productData = try JSONDecoder().decode(ProductData.self, from: response.data!)
+               DispatchQueue.main.async {
+                   self.productImage.sd_setImage(with: URL(string: productData.image), placeholderImage: UIImage(systemName: "photo"))
+                   self.productRate.text = "⭐️\(productData.rating.rate)"
+                   self.productPrice.text = "$\(productData.price)"
+                   self.productTitle.text = productData.title
+                   self.productDescription.text = productData.description
+                   self.productSalesCount.text = "\(productData.rating.count) sold"
+               }
+               } catch
+               let error {
+                   print("DECODING ERROR:",error)
+               }
+               case .failure(let error):
+               print("CASE FAILURE: ",error)
+           }
+       }
+   }
 }
+

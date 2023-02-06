@@ -22,31 +22,49 @@ class CategorizedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: K.TableView.categorizedTableViewCell, bundle: nil), forCellReuseIdentifier: K.TableView.categorizedTableViewCell)
-        filterCategory(category: CategorizedViewController.selectedCategory)
+//        filterCategory(category: CategorizedViewController.selectedCategory)
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        CategorizedViewController.filteredProductList = []
+        fetchCategoryProducts(category: CategorizedViewController.selectedCategory)
     }
     
     
     //MARK: - Functions
-    // Tekrardan model yazip API istek gondermek yerine tum urunleri zaten cekmistim. O yuzden filtreleme yapacagim cekilen urunlerde.
-    func filterCategory(category: String) {
-        CategorizedViewController.filteredProductList = []
-        for product in HomeViewController.productList {
-            if let productCategory = product.category {
-                if productCategory == category {
-                    CategorizedViewController.filteredProductList.append(product)
-                }
-            }
-        }
-    }
-    
     func changeVCCategoryToProductDetail(id: Int) {
+        print("ESKI ID: ",ProductDetailViewController.selectedProductID)
         ProductDetailViewController.selectedProductID = id
+        print("YENI ID: ",ProductDetailViewController.selectedProductID)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: K.Segues.productDetailViewController)
         show(vc, sender: self)
         
     }
+    
+    //MARK: - Networking
+    func fetchCategoryProducts(category: String) {
+        print("\(K.Network.categoryURL)/\(category)")
+       AF.request("\(K.Network.categoryURL)/\(category)").response { response in
+       switch response.result {
+       case .success(_):
+           do {
+               let productData = try JSONDecoder().decode([ProductData].self, from: response.data!)
+               for data in productData {
+                   CategorizedViewController.filteredProductList.append(ProductModel(id: data.id, title: data.title, price: Float(data.price), image: data.image, rate: Float(data.rating.rate), category: data.category, description: data.description, count: data.rating.count))
+                   DispatchQueue.main.async {
+                       self.tableView.reloadData()
+                   }
+               }
+               } catch
+               let error {
+                   print(error)
+               }
+               case .failure(let error):
+               print(error)
+           }
+       }
+   }
     
 }
 
@@ -65,16 +83,16 @@ extension CategorizedViewController: UITableViewDataSource {
         cell.productRateLabel.text = "⭐️ \(u.rate!) "
         cell.productPriceLabel.text = "\(u.price!)$"
         cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(named: "cingeneford.png"))
-        CategorizedViewController.denemeId = u.id!
+//        CategorizedViewController.denemeId = u.id!
         return cell
     }
 }
 
 extension CategorizedViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(HomeViewController.productList[indexPath.row].price!)
-//        if let id = HomeViewController.productList[indexPath.row].id {
-        let id = CategorizedViewController.denemeId
-            changeVCCategoryToProductDetail(id: id)
+        if let productIdAtSelectedRow = CategorizedViewController.filteredProductList[indexPath.row].id {
+            changeVCCategoryToProductDetail(id: productIdAtSelectedRow)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

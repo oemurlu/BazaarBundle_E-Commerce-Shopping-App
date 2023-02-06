@@ -18,17 +18,21 @@ class HomeViewController: UIViewController {
     var liste = ["electronics", "jewelery", "men's clothing", "women's clothing"]
     static var productList: [ProductModel] = []
 
+    //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionSetup()
-        fetchProducts()
 
         self.navigationItem.setHidesBackButton(true, animated: true)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchProducts()
+    }
 
     //MARK: - Networking
-    func fetchProducts() {
+     func fetchProducts() {
         AF.request(K.Network.baseURL).response { response in
         switch response.result {
         case .success(_):
@@ -65,6 +69,7 @@ class HomeViewController: UIViewController {
         bottomCollectionView.collectionViewLayout = BottomCollectionViewColumnFlowLayout(sutunSayisi: 2, minSutunAraligi: 5, minSatirAraligi: 5)
     }
     
+    //MARK: - Fucntions
     func changeVCcategoryToTableView(category: String) {
         CategorizedViewController.selectedCategory = category
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -127,16 +132,16 @@ extension HomeViewController: UICollectionViewDelegate {
             case 1:
                 changeVCcategoryToTableView(category: "jewelery")
             case 2:
-                changeVCcategoryToTableView(category: "men's clothing")
+                changeVCcategoryToTableView(category: "men's%20clothing")
             case 3:
-                changeVCcategoryToTableView(category: "women's clothing")
+                changeVCcategoryToTableView(category: "women's%20clothing")
             default:
                 break
             }
         case bottomCollectionView:
             print(HomeViewController.productList[indexPath.row].price!)
-            if let id = HomeViewController.productList[indexPath.row].id {
-                changeVCHomeToProductDetail(id: id)
+            if let idd = HomeViewController.productList[indexPath.row].id {
+                changeVCHomeToProductDetail(id: idd)
         }
         default:
             break
