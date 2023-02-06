@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseFirestore
+
 
 class BasketViewController: UIViewController {
 
@@ -21,5 +23,7 @@ class BasketViewController: UIViewController {
     @IBAction func checkoutButtonPressed(_ sender: UIButton) {
         //to-do
     }
+    
+    
     
 }

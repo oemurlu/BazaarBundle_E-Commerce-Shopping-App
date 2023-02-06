@@ -13,8 +13,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    private var authUser: User? {
-        return Auth.auth().currentUser
+//    private var authUser: User? {
+//        return Auth.auth().currentUser
+//    }
+    var authUser: FirebaseAuth.User? {
+//        return Auth.auth().currentUser
+        Auth.auth().currentUser
     }
 
     func isEmailVerified() -> Bool {

@@ -400,6 +400,7 @@
                         <outlet property="confirmPasswordTextField" destination="xuB-o8-NA3" id="VdA-ha-yte"/>
                         <outlet property="emailTextField" destination="yS6-CR-CrL" id="A8E-nl-6eN"/>
                         <outlet property="passwordTextField" destination="Z0g-SS-KRl" id="yBl-90-ViG"/>
+                        <outlet property="usernameLabel" destination="6fk-EL-4i9" id="dlh-D4-wMC"/>
                         <segue destination="27X-u6-glH" kind="show" identifier="registerToLogin" id="c17-L6-K6x"/>
                     </connections>
                 </viewController>
@@ -590,8 +591,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3rd tb" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7V-Vd-7jy">
-                                <rect key="frame" x="102" y="315" width="188" height="77"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="sign out, upload photo, change password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7V-Vd-7jy">
+                                <rect key="frame" x="102" y="315" width="188" height="231"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -605,7 +606,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJ2-RN-BMh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4642" y="744"/>
+            <point key="canvasLocation" x="4641.9847328244277" y="743.66197183098598"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

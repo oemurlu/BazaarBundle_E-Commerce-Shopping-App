@@ -14,7 +14,7 @@ class BasketTableViewCell: UITableViewCell {
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productQuantity: UILabel!
     
-    var quantity = 1
+    private var quantity = 1
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -21,6 +21,8 @@
 		B644E04A298D69C9005E794A /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644E049298D69C9005E794A /* BasketViewController.swift */; };
 		B644E04E298E3EB5005E794A /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B644E04C298E3EB5005E794A /* BasketTableViewCell.swift */; };
 		B644E04F298E3EB5005E794A /* BasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B644E04D298E3EB5005E794A /* BasketTableViewCell.xib */; };
+		B6881ED52991556100CC99F4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6881ED42991556100CC99F4 /* UserModel.swift */; };
+		B6881ED82991593B00CC99F4 /* Encodable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6881ED72991593B00CC99F4 /* Encodable+Dictionary.swift */; };
 		B6D4452E2984F7E300C22041 /* DuplicateFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4452D2984F7E300C22041 /* DuplicateFuncs.swift */; };
 		B6D44534298578C800C22041 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */; };
 		B6D4453E29870A4800C22041 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4453C29870A4800C22041 /* CategoriesCollectionViewCell.swift */; };
@@ -57,6 +59,8 @@
 		B644E049298D69C9005E794A /* BasketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
 		B644E04C298E3EB5005E794A /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
 		B644E04D298E3EB5005E794A /* BasketTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BasketTableViewCell.xib; sourceTree = "<group>"; };
+		B6881ED42991556100CC99F4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		B6881ED72991593B00CC99F4 /* Encodable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Dictionary.swift"; sourceTree = "<group>"; };
 		B6D4452D2984F7E300C22041 /* DuplicateFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateFuncs.swift; sourceTree = "<group>"; };
 		B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B6D4453C29870A4800C22041 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 		B6007912298406E6002A1CFF /* Shopping-App-eCommerce */ = {
 			isa = PBXGroup;
 			children = (
+				B6881ED62991592400CC99F4 /* Extensions */,
 				B6D4453A2985BB9300C22041 /* Core */,
 				B6D4452B2984F7C100C22041 /* Helper */,
 				B600793029842F83002A1CFF /* View */,
@@ -126,6 +131,7 @@
 		B600792F29842F79002A1CFF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B6881ED32991554D00CC99F4 /* User */,
 				B6A232DC29898477000AD9B8 /* Product */,
 			);
 			path = Model;
@@ -155,6 +161,22 @@
 				B644E04D298E3EB5005E794A /* BasketTableViewCell.xib */,
 			);
 			path = BasketTableView;
+			sourceTree = "<group>";
+		};
+		B6881ED32991554D00CC99F4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				B6881ED42991556100CC99F4 /* UserModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		B6881ED62991592400CC99F4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6881ED72991593B00CC99F4 /* Encodable+Dictionary.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B6A232DC29898477000AD9B8 /* Product */ = {
@@ -387,6 +409,8 @@
 				B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */,
 				B6D4456A298917DC00C22041 /* CategorizedTableViewCell.swift in Sources */,
 				B6D4454B2987D70600C22041 /* ProductModel.swift in Sources */,
+				B6881ED52991556100CC99F4 /* UserModel.swift in Sources */,
+				B6881ED82991593B00CC99F4 /* Encodable+Dictionary.swift in Sources */,
 				B6D4454E29881C0700C22041 /* ProductData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
