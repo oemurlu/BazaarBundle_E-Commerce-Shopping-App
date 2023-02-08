@@ -1,5 +1,5 @@
 //
-//  BasketTableViewCell.swift
+//  CartTableViewCell.swift
 //  Shopping-App-eCommerce
 //
 //  Created by Osman Emre Ömürlü on 4.02.2023.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class BasketTableViewCell: UITableViewCell {
+class CartTableViewCell: UITableViewCell {
 
     @IBOutlet weak var productImageView: UIImageView!
-    @IBOutlet weak var productImageLabel: UILabel!
+    @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productQuantity: UILabel!
     

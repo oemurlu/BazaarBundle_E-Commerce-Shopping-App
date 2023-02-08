@@ -26,7 +26,7 @@ struct K {
     
     struct TableView {
         static let categorizedTableViewCell = "CategorizedTableViewCell"
-        static let basketTableViewCell = "BasketTableViewCell"
+        static let cartTableViewCell = "CartTableViewCell"
     }
     
 }

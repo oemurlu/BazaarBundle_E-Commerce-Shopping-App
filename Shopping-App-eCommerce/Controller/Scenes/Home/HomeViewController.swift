@@ -17,7 +17,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var topCollectionView: UICollectionView!
     @IBOutlet weak var bottomCollectionView: UICollectionView!
     
-    var liste = ["electronics", "jewelery", "men's clothing", "women's clothing"]
+    var liste = ["electronics", "jewelery", "men's clothing", "women's clothing"] //bad code
     static var productList: [ProductModel] = []
     
     let db = Firestore.firestore()
@@ -52,10 +52,6 @@ class HomeViewController: UIViewController {
 //        }
 //    }
 //
-//    func dbeklex() {
-//
-//    }
-//
 //    func dbcagir() {
 //        let docRef = db.collection("cities").document("SF")
 //
@@ -71,7 +67,7 @@ class HomeViewController: UIViewController {
 //
 //    func dbekle() {
 //        let citiesRef = db.collection("cities")
-//
+//          
 //        citiesRef.document("SF").setData([
 //            "name": "San Francisco",
 //            "state": "CA",
@@ -119,6 +115,7 @@ class HomeViewController: UIViewController {
 
     //MARK: - Networking
      func fetchProducts() {
+        HomeViewController.productList  = []
         AF.request(K.Network.baseURL).response { response in
         switch response.result {
         case .success(_):
@@ -169,7 +166,6 @@ class HomeViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: K.Segues.productDetailViewController)
         show(vc, sender: self)
-
     }
 }
 

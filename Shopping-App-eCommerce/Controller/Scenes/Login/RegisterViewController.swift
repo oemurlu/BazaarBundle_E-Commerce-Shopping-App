@@ -45,16 +45,24 @@ class RegisterViewController: UIViewController {
                         let cart: [Int : Int] = [:]
                         
                         let user = User(id: uid, username: username, email: email, cart: cart)
-                        self.database.collection("users").document(uid).setData(user.dictionary) { error in
+//                        self.database.collection("users").document(uid).setData(user.dictionary) { error in
+//                            if let error = error {
+//                                print("ERROR: DATABASE ADD")
+//                                DuplicateFuncs.alertMessage(title: "ERROR", message: error.localizedDescription, vc: self)
+//                            }
+//                            else {
+//                                DuplicateFuncs.alertMessage(title: "HELAL", message: "ELSE CALISIYOR", vc: self)
+//                            }
+//                        }
+                        self.database.collection("users").document(uid).collection("userInfo").addDocument(data: [
+                            "username": username,
+                            "email": email,
+                            "id": uid
+                        ]) { error in
                             if let error = error {
-                                print("ERROR: DATABASE ADD")
                                 DuplicateFuncs.alertMessage(title: "ERROR", message: error.localizedDescription, vc: self)
                             }
-                            else {
-                                DuplicateFuncs.alertMessage(title: "HELAL", message: "ELSE CALISIYOR", vc: self)
-                            }
                         }
-                        
                         
                         self.sendVerificationMail()
                         DuplicateFuncs.alertMessageWithHandler(title: "Verify your email", message: "Verification mail sent", vc: self) {

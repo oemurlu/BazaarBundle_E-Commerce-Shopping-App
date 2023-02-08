@@ -8,6 +8,8 @@
 import UIKit
 import Alamofire
 import SDWebImage
+import Firebase
+import FirebaseFirestore
 
 class ProductDetailViewController: UIViewController {
 
@@ -18,10 +20,16 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var productSalesCount: UILabel!
     @IBOutlet weak var productRate: UILabel!
     @IBOutlet weak var productPrice: UILabel!
-    @IBOutlet weak var stepper: UIStepper!
-    @IBOutlet weak var quantitityLabel: UILabel!
+    
+    var numberOfClicksOnAddButton = 0
     
     static var selectedProductID: Int  = 0
+    
+    var authUser: FirebaseAuth.User? {
+        Auth.auth().currentUser
+    }
+    let currentUserUid = Auth.auth().currentUser?.uid
+
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -31,10 +39,22 @@ class ProductDetailViewController: UIViewController {
     
     //MARK: - Functions
     @IBAction func addBasketButtonClicked(_ sender: UIButton) {
+        //firestore'a eklenecek olan urun nesne olarak eklencek.
+        numberOfClicksOnAddButton += 1
+        let cartItem = CartItem(productId: ProductDetailViewController.selectedProductID)
+        let database = Firestore.firestore()
+        
+        //oe deneme
+        if numberOfClicksOnAddButton == 1 {
+            
+        }
+        database.collection("users").document(currentUserUid!).collection("cart").addDocument(data: [
+            "productId": cartItem.productId,
+            "productQuantity": 1
+        ])
     }
     
     func fetchCategoryProducts(selectedId: Int) {
-//        print("\(K.Network.categoryURL)/\(category)")
         AF.request("\(K.Network.baseURL)/\(selectedId)").response { response in
        switch response.result {
        case .success(_):
@@ -52,10 +72,15 @@ class ProductDetailViewController: UIViewController {
                let error {
                    print("DECODING ERROR:",error)
                }
-               case .failure(let error):
-               print("CASE FAILURE: ",error)
+            case .failure(let error):
+            print("NETWORK ERROR: ",error)
            }
        }
    }
+    
+    func updateCart(productId: Int) {
+        
+    }
 }
 
+// Swift dili ile iOS uygulamasi yapiyorum. Yukaridaki gibi bir dosyam var. Bu viewcontroller, urun detaylarini gosteriyor ve addBasketButtonClicked butonuna tiklandiginda cart'ta bulunan itemleri firestore'ye gondermek istiyorum. Bunu nasil yapacagim?
