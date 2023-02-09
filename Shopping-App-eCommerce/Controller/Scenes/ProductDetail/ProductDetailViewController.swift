@@ -29,6 +29,7 @@ class ProductDetailViewController: UIViewController {
         Auth.auth().currentUser
     }
     let currentUserUid = Auth.auth().currentUser?.uid
+    let database = Firestore.firestore()
 
     
     //MARK: - Life cycle
@@ -40,18 +41,30 @@ class ProductDetailViewController: UIViewController {
     //MARK: - Functions
     @IBAction func addBasketButtonClicked(_ sender: UIButton) {
         //firestore'a eklenecek olan urun nesne olarak eklencek.
-        numberOfClicksOnAddButton += 1
-        let cartItem = CartItem(productId: ProductDetailViewController.selectedProductID)
-        let database = Firestore.firestore()
+        let cartItem = CartItem(productId: ProductDetailViewController.selectedProductID, productQuantity: 1)
+        let productId = cartItem.productId
+        //firestore'da ayni productId var ise quantity += 1 yapilacak.
+        database.collection("users").document(currentUserUid!).collection("cart").document("\(productId)").getDocument(completion: { (document, error) in
+            if let document = document, document.exists {
+                self.database.collection("users").document(self.currentUserUid!).collection("cart").document("\(productId)").updateData([
+                    "productQuantity": FieldValue.increment(Int64(1))
+                ])
+            } else {
+                // Ürün Firestore veritabanında bulunamadı, ürünü ekleyin ve productQuantity değerini 1 yapın
+                self.database.collection("users").document(self.currentUserUid!).collection("cart").document("\(productId)").setData([
+                    //DOKUMAN ISMINI BEN VERDIM OYLE DENERSIN BI DE
+                    "productID": productId,
+                    "productQuantity": 1
+                ])
+            }
+        })
         
-        //oe deneme
-        if numberOfClicksOnAddButton == 1 {
-            
-        }
-        database.collection("users").document(currentUserUid!).collection("cart").addDocument(data: [
-            "productId": cartItem.productId,
-            "productQuantity": 1
-        ])
+  
+        //addDocument eski yol = DOKUMAN EKLIYORDU
+//        database.collection("users").document(currentUserUid!).collection("cart").addDocument(data: [
+//            "productId": cartItem.productId,
+//            "productQuantity": 1
+//        ])
     }
     
     func fetchCategoryProducts(selectedId: Int) {

@@ -11,7 +11,5 @@ import FirebaseAuth
 
 struct CartItem {
     let productId: Int
-//    let userId: FirebaseAuth.User?
-//    let userId: String
-    let productQuantity = 1
+    let productQuantity: Int
 }
