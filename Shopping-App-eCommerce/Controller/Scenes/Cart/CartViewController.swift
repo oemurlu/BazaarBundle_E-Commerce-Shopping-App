@@ -24,16 +24,14 @@ class CartViewController: UIViewController {
     
     let database = Firestore.firestore()
     private let currentUser = Auth.auth().currentUser
-    private let currentUserUid = Auth.auth().currentUser?.uid
+    let currentUserUid = Auth.auth().currentUser?.uid
     
     var totalCartCost: Double = 0
-    
-//    static var selectedIndex = 0
+    var cart: [String: Int]? = [:]
     
     static var cartItems: [ProductModel] = []
-    
-//    var productIdArray: [Int] = []
-    
+
+    //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewSetup()
@@ -41,9 +39,8 @@ class CartViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        fetchCartIDFromFirestore()
-//        print(productIdArray)
-        listener()
+//        fetchCartProductsFromFirestore()
+        updateCart(productId: 2, quantity: 1)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,12 +48,11 @@ class CartViewController: UIViewController {
         totalCartCost = 0
     }
     
+    
+    //MARK: - bsi bsi handlers DUZELTILECEK BURASI
     @IBAction func checkoutButtonPressed(_ sender: UIButton) {
         //to-do
     }
-    
-    
-    
     
     //MARK: - Functions
     func tableViewSetup() {
@@ -64,9 +60,23 @@ class CartViewController: UIViewController {
         tableView.rowHeight = CGFloat(160)
     }
     
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        let silinecekDocument = CartViewController.cartItems[indexPath.row].id
+//        database.collection("users").document(currentUserUid!).collection("cart").document("\(silinecekDocument!)").delete { error in
+//            if let error = error {
+//                DuplicateFuncs.alertMessage(title: "ERROR", message: "Error removing document", vc: self)
+//            } else {
+////                CartViewController.cartItems.remove(at: indexPath.row)
+////                tableView.deleteRows(at: [indexPath], with: .automatic)
+//                CartViewController.cartItems = []
+//                DuplicateFuncs.alertMessage(title: "Successfull", message: "Product successfully removed", vc: self)
+//            }
+//        }
+//    }
+//
     
-    func fetchItemsFromAPI(selectedId: Int, quantity: Int) {
-//        print("fetchItemsFromAPI WORKING. FETCHING: \(selectedId)")
+    func fetchItemsFromAPI(selectedId: Int, quantity: Int)  {
+        print("fetchItemsFromAPI WORKING. FETCHING: \(selectedId)")
         AF.request("\(K.Network.baseURL)/\(selectedId)").response { response in
        switch response.result {
        case .success(_):
@@ -78,7 +88,6 @@ class CartViewController: UIViewController {
                CartViewController.cartItems.sort(by: { $0.price! < $1.price! })
                
                //urunlerin fiyatlarini totalCartCost'a ekler.
-//               self.totalCartCost += productData.price // * Double(productData.count)
                self.totalCartCost += productData.price * Double(quantity)
                
                DispatchQueue.main.async {
@@ -94,54 +103,108 @@ class CartViewController: UIViewController {
        }
     }
     
-    func fetchCartIDFromFirestore() {
-        CartViewController.cartItems = []
-//        print("fetchCartIDFromFirestore WORKING")
-        //itemler firestore'dan cekilecek
-        database.collection("users").document(currentUserUid!).collection("cart").getDocuments { (querySnapshot, error) in
-            if let error = error {
-//                print("ERROR FETCHING DATA FROM FIRESTORE")
-                DuplicateFuncs.alertMessage(title: "Error", message: error.localizedDescription, vc: self)
-            } else {
-//                self.productIdArray = []
-                for docx in querySnapshot!.documents {
-                    let productId = docx.data()["productId"] as! Int
-                    let productQuantity = docx.data()["productQuantity"] as! Int
-                    
-//                    self.productIdArray.append(productId)
-                    self.fetchItemsFromAPI(selectedId: productId, quantity: productQuantity)
-//                    print("APPEND", docx.data()["productId"] as? Int ?? 0)
-//                    print("ARRAY ON FUNC", self.productIdArray)
-                }
-            }
-        }
-    }
     
-    func updateCart(productId: Int, quantity: Int) {
-        //sepette quantity degisirse bu fonksiyon cagiralacak.
-        //sepette urun varsa eskisinin ustune ekleme burada mi yapilcak??? = evet update yapcaz.
-        //delete yapilirsa da baska bi fonks yazabiliriz daha anlasilir olmasi icin
-    }
+//    func fetchCartProductsFromFirestore() {
+//        print("fetchCartProductsFromFirestore calisiyor..")
+//        database.collection("users").document(currentUserUid!).collection("cart").getDocuments { (querySnapshot, error) in
+//            if let error = error {
+//                print("error getting documents: \(error)")
+//                DuplicateFuncs.alertMessage(title: "Server Error", message: error.localizedDescription, vc: self)
+//            } else {
+//                for document in querySnapshot!.documents {
+////                    print("\(document.documentID) ==>> \(document.data())")
+//                    if let productId = document.data()["productID"] as? Int, let productQuantity = document.data()["productQuantity"] as? Int {
+//                        print("prr: \(productId) ve pq: \(productQuantity)")
+////                        self.fetchItemsFromAPI(selectedId: productId, quantity: productQuantity)
+//
+////                        self.listener(productID: productId, productQuantity: productQuantity)
+//                    } else {
+//                        print("prr error")
+//                    }
+//                }
+//            }
+//        }
+//    }
     
+    
+
+
     func updateUI() {
         self.totalPriceLabel.text = "$\(self.totalCartCost)"
         self.tableView.reloadData()
     }
     
     
-    func listener() {
+    func listenerOnSnapshot() {
         database.collection("users").document(currentUserUid!).collection("cart")
-            .addSnapshotListener { querySnapshot, error in
-                guard let documents = querySnapshot?.documents else {
+    }
+    
+    
+    
+    func listener() {
+        
+        database.collection("users").document(currentUserUid!)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
                     print("Error fetching documents: \(error!)")
                     return
                 }
-                let cities = documents.map { $0["productQuantity"]! }
-                print("Current cities in CA: \(cities)")
-                //ui fiyat guncellemesi
-                self.fetchCartIDFromFirestore()
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                print("Current data: \(data)")
+                
+                //ui guncellenmeli listener tetiklenince
+                CartViewController.cartItems = []
+                self.totalCartCost = 0
+
             }
     }
+    
+    //MARK: - GetProductIndexPath
+    
+    func getProductIndexPath(productId: Int) -> IndexPath {
+        let index = CartViewController.cartItems.firstIndex { product in
+            product.id == productId
+        }
+        if let index = index {
+            return IndexPath(row: index, section: 0)
+        }
+        return IndexPath()
+    }
+    
+    
+    func updateCart(productId: Int, quantity: Int) {
+        guard let currentUser = currentUser else { return }
+        
+        let userRef = database.collection("users").document(currentUserUid!)
+        
+        if quantity > 0 {
+            userRef.setData(["cart.\(productId)" : quantity]) { error in
+                if let error = error {
+                    print("yeni error: \(error.localizedDescription)")
+                } else {
+                    print("yeni success")
+                }
+            }
+        } else {
+            userRef.updateData(["cart.\(productId)" : FieldValue.delete()]) { error in
+                if let error = error {
+//                    self.delegate?.didOccurError(error)
+                } else {
+//                    self.delegate?.didUpdateCartSuccessful(quantity: 0)
+                }
+            }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
 }
 
     //MARK: - Extensions
@@ -160,5 +223,6 @@ extension CartViewController: UITableViewDataSource {
         return cell
     }
 }
+
 
 
