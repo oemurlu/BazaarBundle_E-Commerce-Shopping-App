@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseFirestore
 
 class CartTableViewCell: UITableViewCell {
 
@@ -24,11 +26,13 @@ class CartTableViewCell: UITableViewCell {
             } else if quantity > 10 {
                 quantity = 10
             }
-            self.productQuantity.text = String(quantity)
+//            self.productQuantity.text = String(quantity)
         }
     }
     
     let obj = CartViewController()
+    
+    let database = Firestore.firestore()
     
     override func awakeFromNib() {
         super.awakeFromNib()

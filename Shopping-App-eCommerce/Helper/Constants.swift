@@ -14,6 +14,10 @@ struct K {
         static let productDetailViewController = "productDetailViewController"
     }
     
+    struct StoryboardID {
+        static let welcomeVC = "WelcomeVC"
+    }
+    
     struct CollectionViews {
         static let topCollectionViewNibNameAndIdentifier = "CategoriesCollectionViewCell"
         static let bottomCollectionViewNibNameAndIdentifier = "ProductsCollectionViewCell"

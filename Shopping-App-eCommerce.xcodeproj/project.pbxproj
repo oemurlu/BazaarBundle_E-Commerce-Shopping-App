@@ -24,6 +24,7 @@
 		B6881ED52991556100CC99F4 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6881ED42991556100CC99F4 /* UserModel.swift */; };
 		B6881ED82991593B00CC99F4 /* Encodable+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6881ED72991593B00CC99F4 /* Encodable+Dictionary.swift */; };
 		B6881EDB2992776000CC99F4 /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6881EDA2992776000CC99F4 /* CartModel.swift */; };
+		B6881EDD2997B59C00CC99F4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6881EDC2997B59C00CC99F4 /* ProfileViewController.swift */; };
 		B6D4452E2984F7E300C22041 /* DuplicateFuncs.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4452D2984F7E300C22041 /* DuplicateFuncs.swift */; };
 		B6D44534298578C800C22041 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */; };
 		B6D4453E29870A4800C22041 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6D4453C29870A4800C22041 /* CategoriesCollectionViewCell.swift */; };
@@ -63,6 +64,7 @@
 		B6881ED42991556100CC99F4 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		B6881ED72991593B00CC99F4 /* Encodable+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Dictionary.swift"; sourceTree = "<group>"; };
 		B6881EDA2992776000CC99F4 /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		B6881EDC2997B59C00CC99F4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B6D4452D2984F7E300C22041 /* DuplicateFuncs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DuplicateFuncs.swift; sourceTree = "<group>"; };
 		B6D44533298578C800C22041 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		B6D4453C29870A4800C22041 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 		B6D445392985BA5700C22041 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				B6881EDC2997B59C00CC99F4 /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				B644E048298D388F005E794A /* ProductDetailViewController.swift in Sources */,
 				B600793E29845D43002A1CFF /* Constants.swift in Sources */,
 				B6007938298430A8002A1CFF /* RegisterViewController.swift in Sources */,
+				B6881EDD2997B59C00CC99F4 /* ProfileViewController.swift in Sources */,
 				B6881EDB2992776000CC99F4 /* CartModel.swift in Sources */,
 				B600793C29843A40002A1CFF /* HomeViewController.swift in Sources */,
 				B6D4456A298917DC00C22041 /* CategorizedTableViewCell.swift in Sources */,
