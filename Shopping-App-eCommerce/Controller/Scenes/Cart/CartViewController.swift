@@ -90,12 +90,29 @@ class CartViewController: UIViewController {
             
             for productId in data.keys {
                 let productQuantity = data[productId]
-                print("id: \(productId) ve adet: \(productQuantity!)")
                 self.fetchItemsFromAPI(productId: productId, quantity: productQuantity as! Int)
             }
             
             CartViewController.cartItems = []
-            self.totalCartCost = 0
+//            self.totalCartCost = 0
+            
+            self.isCartEmptyOnFirestore()
+        }
+    }
+    
+    func isCartEmptyOnFirestore() {
+        let docRef = self.database.collection("users").document(self.currentUserUid!)
+        docRef.getDocument { document, error in
+            if let document = document, document.exists {
+                let data = document.data()
+                
+                //if there is no product on firestore
+                if data!.isEmpty {
+                    self.tableView.reloadData()
+                    self.totalCartCost = 0
+                    self.totalPriceLabel.text = "$\(self.totalCartCost)"
+                }
+            }
         }
     }
     
@@ -171,5 +188,33 @@ extension CartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            let productId = CartViewController.cartItems[indexPath.row].id
+            print(productId!)
+            let docRef = database.collection("users").document(currentUserUid!)
+            docRef.updateData(["\(String(describing: productId!))": FieldValue.delete()]) { error in
+                if let error = error {
+                    DuplicateFuncs.alertMessage(title: "Error", message: "Product could not be deleted.", vc: self)
+                    print("Product deletion error: \(error.localizedDescription)")
+                } else {
+                    DuplicateFuncs.alertMessage(title: "Sucess", message: "Product deleted.", vc: self)
+                }
+            }
+            
+//            docRef.getDocument { document, error in
+//                if let document = document, document.exists {
+//                    let data = document.data()
+//                    //No product on firestore
+//                    if data!.isEmpty {
+//                        self.tableView.reloadData()
+//                        //                        self.totalCartCost = 0
+//                        self.totalPriceLabel.text = "$\(self.totalCartCost)"
+//                        print(self.totalCartCost)
+//                    }
+//                }
+//            }
+        }
+    }
 }
-
