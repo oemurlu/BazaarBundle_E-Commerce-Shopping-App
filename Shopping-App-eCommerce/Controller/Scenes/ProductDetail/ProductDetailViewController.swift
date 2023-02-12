@@ -53,7 +53,7 @@ class ProductDetailViewController: UIViewController {
                     userRef.updateData(["\(productId)" : quantity])
                     DuplicateFuncs.alertMessage(title: "Success", message: "The product has been successfully added to the cart.", vc: self)
                 }
-            }
+            } 
         }
     }
     

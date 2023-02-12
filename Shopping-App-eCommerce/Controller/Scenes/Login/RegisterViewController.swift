@@ -54,7 +54,7 @@ class RegisterViewController: UIViewController {
 //                                DuplicateFuncs.alertMessage(title: "HELAL", message: "ELSE CALISIYOR", vc: self)
 //                            }
 //                        }
-                        self.database.collection("users").document(uid).collection("userInfo").addDocument(data: [
+                        self.database.collection("users").document(uid).collection("userInfo").document(uid).setData([
                             "username": username,
                             "email": email,
                             "id": uid

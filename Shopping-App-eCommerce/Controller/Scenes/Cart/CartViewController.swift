@@ -108,7 +108,7 @@ class CartViewController: UIViewController {
                     DuplicateFuncs.alertMessage(title: "Caution", message: "Your cart is empty.", vc: self)
                 }
             } else {
-                DuplicateFuncs.alertMessage(title: "Server Error", message: error!.localizedDescription, vc: self)
+                DuplicateFuncs.alertMessage(title: "Server Error", message: "connection issue", vc: self)
             }
         }
     }
