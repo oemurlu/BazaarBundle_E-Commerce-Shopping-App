@@ -48,7 +48,6 @@ class ProductDetailViewController: UIViewController {
                 if let data = document.data(), let _ = data["\(productId)"] {
                     userRef.updateData(["\(productId)" : FieldValue.increment(Int64(1))])
                     DuplicateFuncs.alertMessage(title: "Caution", message: "The quantity of the product in the cart has been increased by 1.", vc: self)
-
                 } else {
                     userRef.updateData(["\(productId)" : quantity])
                     DuplicateFuncs.alertMessage(title: "Success", message: "The product has been successfully added to the cart.", vc: self)

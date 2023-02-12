@@ -16,4 +16,5 @@ struct ProductModel {
     var category: String?
     var description: String?
     var count: Int?
+    var quantityCount: Int?
 }

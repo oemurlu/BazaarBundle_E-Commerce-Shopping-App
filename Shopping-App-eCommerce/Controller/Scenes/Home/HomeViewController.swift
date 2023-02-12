@@ -141,7 +141,7 @@ extension HomeViewController: UICollectionViewDelegate {
                 break
             }
         case bottomCollectionView:
-            print(HomeViewController.productList[indexPath.row].price!)
+//            print(HomeViewController.productList[indexPath.row].price!)
             if let idd = HomeViewController.productList[indexPath.row].id {
                 changeVCHomeToProductDetail(id: idd)
         }

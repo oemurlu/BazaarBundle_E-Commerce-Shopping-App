@@ -18,22 +18,9 @@ class CartTableViewCell: UITableViewCell {
     
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
-    
-    var quantity = 1 {
-        didSet {
-            if quantity <= 1 {
-                quantity = 1
-            } else if quantity > 10 {
-                quantity = 10
-            }
-//            self.productQuantity.text = String(quantity)
-        }
-    }
-    
-    let obj = CartViewController()
-    
-    let database = Firestore.firestore()
-    
+  
+    var quantity = 1
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -47,32 +34,9 @@ class CartTableViewCell: UITableViewCell {
     }
     
     @IBAction func minusButtonPressed(_ sender: UIButton) {
-//        quantity -= 1
-        addTarget()
     }
     
     @IBAction func plusButtonPressed(_ sender: UIButton) {
-//        quantity += 1
-        addTarget()
     }
-    
-    func addTarget() {
-        plusButton.addTarget(self, action: #selector(stepperPlusButtonPressed), for: .touchUpInside)
-        minusButton.addTarget(self, action: #selector(stepperMinusButtonPressed), for: .touchUpInside)
-    }
-    
-    @objc func stepperPlusButtonPressed(_ button: UIButton) {
-        quantity = quantity + 1
-        print("stepper +1")
-    }
-    
-    @objc func stepperMinusButtonPressed(_ button: UIButton) {
-        quantity = quantity - 1
-        print("stepper -1")
-    }
-  
-
-    
-    
 }
 
