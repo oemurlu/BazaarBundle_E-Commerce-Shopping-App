@@ -17,7 +17,6 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
     var authUser: FirebaseAuth.User? {
-//        return Auth.auth().currentUser
         Auth.auth().currentUser
     }
     
@@ -40,29 +39,25 @@ class RegisterViewController: UIViewController {
                                 DuplicateFuncs.alertMessage(title: "FIRESTORE ERROR", message: error.localizedDescription, vc: self)
                             }
                         })
-                        guard let uid = authResult?.user.uid else { return }
+                        guard let userUid = authResult?.user.uid else { return }
                         
-                        let cart: [Int : Int] = [:]
+//                        let cart: [Int : Int] = [:]
                         
-                        let user = User(id: uid, username: username, email: email, cart: cart)
-//                        self.database.collection("users").document(uid).setData(user.dictionary) { error in
-//                            if let error = error {
-//                                print("ERROR: DATABASE ADD")
-//                                DuplicateFuncs.alertMessage(title: "ERROR", message: error.localizedDescription, vc: self)
-//                            }
-//                            else {
-//                                DuplicateFuncs.alertMessage(title: "HELAL", message: "ELSE CALISIYOR", vc: self)
-//                            }
-//                        }
-                        self.database.collection("users").document(uid).collection("userInfo").document(uid).setData([
+//                        let user = User(id: uid, username: username, email: email, cart: cart)
+
+                        self.database.collection("users").document(userUid).collection("userInfo").document(userUid).setData([
                             "username": username,
                             "email": email,
-                            "id": uid
+                            "id": userUid
                         ]) { error in
                             if let error = error {
                                 DuplicateFuncs.alertMessage(title: "ERROR", message: error.localizedDescription, vc: self)
                             }
                         }
+                        
+                        //testing fix-1
+                        //dokumanda bos veri seti baslatmamiz lazim cunku dokumandaki data nil olursa query ve snapshot burayi okuyamiyor. Bos mu diye kontrol edemiyor cunku dokumanin datasini okuyamiyor. Okumasi icin bos data set ediyorum. Aksi takdirde data okunamadigi icin hicbir isler calismiyor.
+                        self.database.collection("users").document(userUid).setData([:])
                         
                         self.sendVerificationMail()
                         DuplicateFuncs.alertMessageWithHandler(title: "Verify your email", message: "Verification mail sent", vc: self) {

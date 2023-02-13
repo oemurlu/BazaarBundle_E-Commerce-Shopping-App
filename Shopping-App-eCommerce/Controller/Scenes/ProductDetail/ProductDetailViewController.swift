@@ -35,13 +35,15 @@ class ProductDetailViewController: UIViewController {
     
     //MARK: - bsi handlers
     @IBAction func addBasketButtonClicked(_ sender: UIButton) {
+        print("add to cart buton clicked")
         updateCart(productId: ProductDetailViewController.selectedProductID, quantity: 1)
     }
     
     //MARK: - Functions
     func updateCart(productId: Int, quantity: Int) {
         let userRef = database.collection("users").document(currentUserUid!)
-        
+        print("updateCart calisti")
+        print(currentUserUid!)
         //ayni urun sepette var ise urunun quantity 1 artirilacak.
         userRef.getDocument { document, error in
             if let document = document, document.exists {
@@ -52,7 +54,9 @@ class ProductDetailViewController: UIViewController {
                     userRef.updateData(["\(productId)" : quantity])
                     DuplicateFuncs.alertMessage(title: "Success", message: "The product has been successfully added to the cart.", vc: self)
                 }
-            } 
+            } else {
+                print("document = document olmadi: \(error?.localizedDescription) ve doc: \(document)")
+            }
         }
     }
     

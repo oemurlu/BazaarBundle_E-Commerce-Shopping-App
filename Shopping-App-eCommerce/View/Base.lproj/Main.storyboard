@@ -496,7 +496,7 @@
                     <tabBarItem key="tabBarItem" title="Cart" image="cart.fill" catalog="system" selectedImage="basket.fill" id="jvU-TQ-lxf"/>
                     <connections>
                         <outlet property="tableView" destination="vl5-mK-njU" id="vhE-Ta-gtr"/>
-                        <outlet property="totalPriceLabel" destination="u79-8k-4Iq" id="1Dm-TZ-bAw"/>
+                        <outlet property="totalPriceLabel" destination="u79-8k-4Iq" id="aEA-kc-W5v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="itX-4E-vtc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -655,7 +655,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="klc-3Y-0q2"/>
+        <segue reference="c17-L6-K6x"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="applelogo" catalog="system" width="105" height="128"/>

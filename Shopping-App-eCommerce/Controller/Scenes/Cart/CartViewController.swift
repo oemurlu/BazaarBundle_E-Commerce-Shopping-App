@@ -16,8 +16,9 @@ import Alamofire
 class CartViewController: UIViewController {
     
     //MARK: - Properties
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var totalPriceLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
+    
     
     private let database = Firestore.firestore()
     private let currentUser = Auth.auth().currentUser
@@ -31,8 +32,9 @@ class CartViewController: UIViewController {
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableViewSetup()
         listener()
+        tableViewSetup()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,10 +64,10 @@ class CartViewController: UIViewController {
                     
                     //Urunleri fiyatina gore siralar.
                     CartViewController.cartItems.sort(by: { $0.price! < $1.price! })
-                    
+                    self.totalCartCost += productData.price * Double(quantity)
+                    self.totalPriceLabel.text = "$\(self.totalCartCost)"
+
                     DispatchQueue.main.async {
-                        self.totalCartCost += productData.price * Double(quantity)
-                        self.totalPriceLabel.text = "$\(self.totalCartCost)"
                         self.tableView.reloadData()
                     }
                 } catch let error {
@@ -78,39 +80,69 @@ class CartViewController: UIViewController {
     }
     
     func listener() {
+        print("listener working")
         database.collection("users").document(currentUserUid!).addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching documents: \(error!)")
                 return
             }
-            guard let data = document.data() else {
-                print("Document data was empty.")
-                return
+//            guard let data = document.data() else {
+//                print("Document data was empty.")
+//                return
+//            }
+
+            if let data = document.data() {
+                print("data: \(data)")
+                self.isCartEmptyOnFirestore { isEmpty in
+                    if isEmpty {
+                        print("isEmpty")
+                        self.totalCartCost = 0
+                        self.totalPriceLabel.text = "$\(self.totalCartCost)"
+                        self.tableView.reloadData()
+                    } else {
+                        print("isEmpty else")
+                        for productId in data.keys {
+                            let productQuantity = data[productId]
+                            self.fetchItemsFromAPI(productId: productId, quantity: productQuantity as! Int)
+                        }
+                    }
+                }
+            } else {
+                print("data else")
+                self.totalCartCost = 0
             }
             
-            for productId in data.keys {
-                let productQuantity = data[productId]
-                self.fetchItemsFromAPI(productId: productId, quantity: productQuantity as! Int)
-            }
-            
+            print("data else cikisi")
             CartViewController.cartItems = []
-//            self.totalCartCost = 0
+            self.totalCartCost = 0
             
-            self.isCartEmptyOnFirestore()
+//            self.isCartEmptyOnFirestore { isEmpty in
+//                if isEmpty {
+//                    print("isEmpty")
+//                    self.totalCartCost = 0
+//                    self.totalPriceLabel.text = "$\(self.totalCartCost)"
+//                    self.tableView.reloadData()
+//                } else {
+//                    print("isEmpty else")
+//                    for productId in data.keys {
+//                        let productQuantity = data[productId]
+//                        self.fetchItemsFromAPI(productId: productId, quantity: productQuantity as! Int)
+//                    }
+//                }
+//            }
         }
     }
     
-    func isCartEmptyOnFirestore() {
+    func isCartEmptyOnFirestore(completion: @escaping (Bool) -> Void) {
         let docRef = self.database.collection("users").document(self.currentUserUid!)
         docRef.getDocument { document, error in
             if let document = document, document.exists {
                 let data = document.data()
                 
-                //if there is no product on firestore
                 if data!.isEmpty {
-                    self.tableView.reloadData()
-                    self.totalCartCost = 0
-                    self.totalPriceLabel.text = "$\(self.totalCartCost)"
+                    completion(true)
+                } else {
+                    completion(false)
                 }
             }
         }
@@ -119,14 +151,12 @@ class CartViewController: UIViewController {
     @objc func minusButtonTapped(_ sender: UIButton) {
         let index = sender.tag
         let id = CartViewController.cartItems[index].id
-        print("Button at index: \(index) was tapped. ID: \(id!)")
         updateProductQuantityOnFirestore(productId: id!, increment: false)
     }
     
     @objc func plusButtonTapped(_ sender: UIButton) {
         let index = sender.tag
         let id = CartViewController.cartItems[index].id
-        print("Button at index: \(index) was tapped. ID: \(id!)")
         updateProductQuantityOnFirestore(productId: id!, increment: true)
     }
     
@@ -162,6 +192,10 @@ class CartViewController: UIViewController {
 //MARK: - Extensions
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("count: \(CartViewController.cartItems.count)")
+        for item in CartViewController.cartItems {
+            print("id: ", item.id!)
+        }
         return CartViewController.cartItems.count
     }
     
@@ -202,19 +236,6 @@ extension CartViewController: UITableViewDelegate {
                     DuplicateFuncs.alertMessage(title: "Sucess", message: "Product deleted.", vc: self)
                 }
             }
-            
-//            docRef.getDocument { document, error in
-//                if let document = document, document.exists {
-//                    let data = document.data()
-//                    //No product on firestore
-//                    if data!.isEmpty {
-//                        self.tableView.reloadData()
-//                        //                        self.totalCartCost = 0
-//                        self.totalPriceLabel.text = "$\(self.totalCartCost)"
-//                        print(self.totalCartCost)
-//                    }
-//                }
-//            }
         }
     }
 }
