@@ -7,11 +7,8 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
-import FirebaseFirestore
 import SDWebImage
 import Alamofire
-
 
 class CartViewController: UIViewController {
     
@@ -19,33 +16,28 @@ class CartViewController: UIViewController {
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    
     private let database = Firestore.firestore()
-    private let currentUser = Auth.auth().currentUser
-    let currentUserUid = Auth.auth().currentUser?.uid
+    private let currentUserUid = Auth.auth().currentUser?.uid
     
-    var totalCartCost: Double = 0
-    var cart: [String: Int]? = [:]
-    
-    var isQuantityButtonTapped = false
+    private var totalCartCost: Double = 0
+    private var cart: [String: Int]? = [:]
+    private var isQuantityButtonTapped = false
 
-    
     static var cartItems: [ProductModel] = []
     
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         listener()
         tableViewSetup()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         totalCartCost = 0
     }
     
-    
-    //MARK: - bsi bsi handlers DUZELTILECEK BURASI
+    //MARK: - Interaction handlers
     @IBAction func checkoutButtonPressed(_ sender: UIButton) {
         //to-do
     }
@@ -57,7 +49,6 @@ class CartViewController: UIViewController {
     }
     
     func fetchItemsFromAPI(productId: String, quantity: Int)  {
-        print("api func working")
         AF.request("\(K.Network.baseURL)/\(productId)").response { response in
             switch response.result {
             case .success(_):
@@ -67,6 +58,8 @@ class CartViewController: UIViewController {
                     
                     //Urunleri fiyatina gore siralar.
                     CartViewController.cartItems.sort(by: { $0.price! < $1.price! })
+                    
+                    //Urun fiyatlarini kac adet ise ona gore totalCartCost'a ekler.
                     self.totalCartCost += productData.price * Double(quantity)
                     self.totalPriceLabel.text = "$\(self.totalCartCost)"
 
@@ -91,15 +84,12 @@ class CartViewController: UIViewController {
             }
 
             if let data = document.data() {
-                print("data: \(data)")
                 self.isCartEmptyOnFirestore { isEmpty in
                     if isEmpty {
-                        print("isEmpty")
                         self.totalCartCost = 0
                         self.totalPriceLabel.text = "$\(self.totalCartCost)"
                         self.tableView.reloadData()
                     } else {
-                        print("isEmpty else (listener ici)")
                         for productId in data.keys {
                             let productQuantity = data[productId]
                             self.fetchItemsFromAPI(productId: productId, quantity: productQuantity as! Int)
@@ -107,33 +97,15 @@ class CartViewController: UIViewController {
                     }
                 }
             } else {
-                print("data else")
                 self.totalCartCost = 0
             }
             
-            print("data else cikisi (listener sonu)")
             CartViewController.cartItems = []
             self.totalCartCost = 0
-            
-//            self.isCartEmptyOnFirestore { isEmpty in
-//                if isEmpty {
-//                    print("isEmpty")
-//                    self.totalCartCost = 0
-//                    self.totalPriceLabel.text = "$\(self.totalCartCost)"
-//                    self.tableView.reloadData()
-//                } else {
-//                    print("isEmpty else")
-//                    for productId in data.keys {
-//                        let productQuantity = data[productId]
-//                        self.fetchItemsFromAPI(productId: productId, quantity: productQuantity as! Int)
-//                    }
-//                }
-//            }
         }
     }
     
     func isCartEmptyOnFirestore(completion: @escaping (Bool) -> Void) {
-        print("isCartEmptyOnFirestore working")
         let docRef = self.database.collection("users").document(self.currentUserUid!)
         docRef.getDocument { document, error in
             if let document = document, document.exists {
@@ -180,12 +152,8 @@ class CartViewController: UIViewController {
         }
     }
 
-    
-    
     func updateProductQuantityOnFirestore(productId: Int, increment: Bool) {
-        print("updateProductQuantityOnFirestore working")
         let userRef = database.collection("users").document(currentUserUid!)
-        
         userRef.getDocument { document, error in
             guard let document = document else { return }
             let currentQuantity = document.data()!["\(productId)"] as! Int
@@ -215,12 +183,10 @@ class CartViewController: UIViewController {
 //MARK: - Extensions
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsInSection working")
         return CartViewController.cartItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt working")
         let cell = tableView.dequeueReusableCell(withIdentifier: K.TableView.cartTableViewCell, for: indexPath) as! CartTableViewCell
         let u = CartViewController.cartItems[indexPath.row]
         cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(named: "placeholderImage.jpg"))

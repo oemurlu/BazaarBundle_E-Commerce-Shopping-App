@@ -13,12 +13,12 @@ class ForgotPasswordViewController: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var emailTextField: UITextField!
     
+    //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
+    //MARK: - Interaction handlers
     @IBAction func sendNewPasswordButtonPressed(_ sender: UIButton) {
         if let email = emailTextField.text {
             if email == "" {

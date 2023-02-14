@@ -26,6 +26,7 @@ struct K {
     struct Network {
         static let baseURL = "https://fakestoreapi.com/products"
         static let categoryURL = "https://fakestoreapi.com/products/category"
+        static let categoriesURL = "https://fakestoreapi.com/products/categories"
     }
     
     struct TableView {

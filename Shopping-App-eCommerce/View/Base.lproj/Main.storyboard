@@ -72,7 +72,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="fopomo4343@laserlip.com" borderStyle="roundedRect" placeholder="entery our mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onE-Vc-NH8">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="kiyaxa8921@jobsfeel.com" borderStyle="roundedRect" placeholder="entery our mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="onE-Vc-NH8">
                                 <rect key="frame" x="51" y="421" width="290" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -267,8 +267,8 @@
                     <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="0Jm-yg-kgh"/>
                     <navigationItem key="navigationItem" id="o2G-kA-FJN"/>
                     <connections>
-                        <outlet property="bottomCollectionView" destination="opp-rT-gTi" id="YZb-BU-gLC"/>
-                        <outlet property="topCollectionView" destination="x2H-Pb-Zdo" id="WOa-CL-NWS"/>
+                        <outlet property="categoryCollectionView" destination="x2H-Pb-Zdo" id="WOa-CL-NWS"/>
+                        <outlet property="productCollectionView" destination="opp-rT-gTi" id="YZb-BU-gLC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hzt-Lz-Icx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

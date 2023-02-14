@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseAuth
 
 struct CartItem {
     let productId: Int

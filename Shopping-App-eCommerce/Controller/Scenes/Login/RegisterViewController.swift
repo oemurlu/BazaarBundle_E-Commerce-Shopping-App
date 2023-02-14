@@ -16,11 +16,11 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
-    var authUser: FirebaseAuth.User? {
+    private let database = Firestore.firestore()
+
+    private var authUser: FirebaseAuth.User? {
         Auth.auth().currentUser
     }
-    
-    private let database = Firestore.firestore()
     
     //MARK: - Interaction handlers
     @IBAction func signUpButtonClicked(_ sender: UIButton) {
@@ -40,10 +40,6 @@ class RegisterViewController: UIViewController {
                             }
                         })
                         guard let userUid = authResult?.user.uid else { return }
-                        
-//                        let cart: [Int : Int] = [:]
-                        
-//                        let user = User(id: uid, username: username, email: email, cart: cart)
 
                         self.database.collection("users").document(userUid).collection("userInfo").document(userUid).setData([
                             "username": username,
@@ -72,7 +68,7 @@ class RegisterViewController: UIViewController {
     }
     
     //MARK: - Functions
-    private func sendVerificationMail() {
+    func sendVerificationMail() {
         if authUser != nil && !authUser!.isEmailVerified {
             authUser?.sendEmailVerification(completion: { error in
                 if let error = error {
@@ -85,7 +81,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    private func isPasswordsMatch(password: String, confirmPassword: String) -> Bool {
+    func isPasswordsMatch(password: String, confirmPassword: String) -> Bool {
         if let password = passwordTextField.text, let passwordConfirm = confirmPasswordTextField.text {
             if password == passwordConfirm {
                 return true

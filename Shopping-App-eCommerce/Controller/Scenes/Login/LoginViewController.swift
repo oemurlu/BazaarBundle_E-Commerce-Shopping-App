@@ -10,30 +10,19 @@ import Firebase
 
 class LoginViewController: UIViewController {
 
+    //MARK: - Properties
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-//    private var authUser: User? {
-//        return Auth.auth().currentUser
-//    }
-    var authUser: FirebaseAuth.User? {
-//        return Auth.auth().currentUser
+    private var authUser: FirebaseAuth.User? {
         Auth.auth().currentUser
     }
 
-    func isEmailVerified() -> Bool {
-        if authUser != nil && !authUser!.isEmailVerified { //buradaki 'isEmailVerified' Firebase'den geliyor.
-            // User is available, but their email is not verified.
-            return true
-        }
-        return false
-    }
-
+    //MARK: - Interaction handlers
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
                 if let e = error {
-                    print("signIn Firebase error", e.localizedDescription)
                     DuplicateFuncs.alertMessage(title: "ERROR", message: e.localizedDescription, vc: self)
                 } else {
                     if self.isEmailVerified() {
@@ -41,10 +30,18 @@ class LoginViewController: UIViewController {
                     } else {
                         self.performSegue(withIdentifier: K.Segues.loginToHome, sender: self)
                     }
-
                 }
             }
         }
+    }
+    
+    //MARK: - Functions
+    func isEmailVerified() -> Bool {
+        if authUser != nil && !authUser!.isEmailVerified { //buradaki 'isEmailVerified' Firebase'den geliyor.
+            // User is available, but their email is not verified.
+            return true
+        }
+        return false
     }
 }
 

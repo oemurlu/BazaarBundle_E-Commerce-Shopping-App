@@ -7,10 +7,7 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
-import FirebaseFirestore
 import FirebaseStorage
-
 
 class ProfileViewController: UIViewController {
     
@@ -19,17 +16,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileUsernameLabel: UILabel!
     @IBOutlet weak var profileUserEmailLabel: UILabel!
     
-    let currentUser = Auth.auth().currentUser
-    let imagePicker = UIImagePickerController()
-    var selectedImage: UIImage?
-    let storage = Storage.storage()
-    let database = Firestore.firestore()
-    let currentUserUid = Auth.auth().currentUser?.uid
+    private let currentUser = Auth.auth().currentUser
+    private let imagePicker = UIImagePickerController()
+    private let storage = Storage.storage()
+    private let database = Firestore.firestore()
+    private let currentUserUid = Auth.auth().currentUser?.uid
     
+    private var selectedImage: UIImage?
+    private var email: String?
+    private var username: String?
     
-    var email: String?
-    var username: String?
-    
+    //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
@@ -42,7 +39,7 @@ class ProfileViewController: UIViewController {
         fetchUserNameAndEmail()
     }
     
-    //MARK: - bsi handlers
+    //MARK: - Interaction handlers
     @IBAction func uploadProfilePhotoButtonPressed(_ sender: UIButton) {
         //resim secme islemi
         imagePicker.allowsEditing = false
@@ -64,7 +61,6 @@ class ProfileViewController: UIViewController {
                 vc.navigationItem.hidesBackButton = true
                 self.show(vc, sender: self)
             }
-            
         } catch let error {
             DuplicateFuncs.alertMessage(title: "Error", message: error.localizedDescription, vc: self)
         }
@@ -72,7 +68,7 @@ class ProfileViewController: UIViewController {
     
     func uploadProfilePhotoToFirebase() {
         guard let image = selectedImage else { return }
-        guard let imageData = image.jpegData(compressionQuality: 0.2) else { return }
+        guard let imageData = image.jpegData(compressionQuality: 0.1) else { return }
         let storageRef = storage.reference().child("profile_photos").child("\(String(describing: currentUserUid)).jpg")
         let uploadTask = storageRef.putData(imageData) { (metadata, error) in
             if error != nil {
@@ -96,7 +92,6 @@ class ProfileViewController: UIViewController {
                     }
                     DuplicateFuncs.alertMessage(title: "Success", message: "Profile photo successfully saved.", vc: self)
                 }
-                
             }
         }
         uploadTask.resume()
@@ -125,9 +120,6 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    
-    
-    
     func fetchUserNameAndEmail() {
         database.collection("users").document(currentUserUid!).collection("userInfo").document(currentUserUid!).getDocument { document, error in
             if error != nil {
@@ -147,19 +139,18 @@ class ProfileViewController: UIViewController {
     
 }
 
+//MARK: - Extensions
 extension ProfileViewController: UIImagePickerControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             selectedImage = pickedImage
             profilePictureImageView.image = selectedImage
             dismiss(animated: true)
-            //firestore'ye yukleme islemi
             uploadProfilePhotoToFirebase()
         }
     }
-    
 }
 
 extension ProfileViewController: UINavigationControllerDelegate {
-    
+    //burayi silme
 }

@@ -17,32 +17,25 @@ class CategorizedViewController: UIViewController {
     static var filteredProductList: [ProductModel] = []
     static var selectedCategory: String = ""
     
-    static var denemeId: Int = 0
-    
+    //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: K.TableView.categorizedTableViewCell, bundle: nil), forCellReuseIdentifier: K.TableView.categorizedTableViewCell)
-//        filterCategory(category: CategorizedViewController.selectedCategory)
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         CategorizedViewController.filteredProductList = []
         fetchCategoryProducts(category: CategorizedViewController.selectedCategory)
     }
     
-    
     //MARK: - Functions
     func changeVCCategoryToProductDetail(id: Int) {
-        print("ESKI ID: ",ProductDetailViewController.selectedProductID)
         ProductDetailViewController.selectedProductID = id
-        print("YENI ID: ",ProductDetailViewController.selectedProductID)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: K.Segues.productDetailViewController)
         show(vc, sender: self)
-        
     }
     
-    //MARK: - Networking
     func fetchCategoryProducts(category: String) {
         print("\(K.Network.categoryURL)/\(category)")
        AF.request("\(K.Network.categoryURL)/\(category)").response { response in
@@ -65,7 +58,6 @@ class CategorizedViewController: UIViewController {
            }
        }
    }
-    
 }
 
 //MARK: - Extensions
@@ -83,7 +75,6 @@ extension CategorizedViewController: UITableViewDataSource {
         cell.productRateLabel.text = "⭐️ \(u.rate!) "
         cell.productPriceLabel.text = "\(u.price!)$"
         cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(named: "cingeneford.png"))
-//        CategorizedViewController.denemeId = u.id!
         return cell
     }
 }
