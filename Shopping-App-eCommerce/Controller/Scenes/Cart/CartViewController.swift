@@ -27,6 +27,9 @@ class CartViewController: UIViewController {
     var totalCartCost: Double = 0
     var cart: [String: Int]? = [:]
     
+    var isQuantityButtonTapped = false
+
+    
     static var cartItems: [ProductModel] = []
     
     //MARK: - Life cycle
@@ -86,10 +89,6 @@ class CartViewController: UIViewController {
                 print("Error fetching documents: \(error!)")
                 return
             }
-//            guard let data = document.data() else {
-//                print("Document data was empty.")
-//                return
-//            }
 
             if let data = document.data() {
                 print("data: \(data)")
@@ -100,7 +99,7 @@ class CartViewController: UIViewController {
                         self.totalPriceLabel.text = "$\(self.totalCartCost)"
                         self.tableView.reloadData()
                     } else {
-                        print("isEmpty else")
+                        print("isEmpty else (listener ici)")
                         for productId in data.keys {
                             let productQuantity = data[productId]
                             self.fetchItemsFromAPI(productId: productId, quantity: productQuantity as! Int)
@@ -112,7 +111,7 @@ class CartViewController: UIViewController {
                 self.totalCartCost = 0
             }
             
-            print("data else cikisi")
+            print("data else cikisi (listener sonu)")
             CartViewController.cartItems = []
             self.totalCartCost = 0
             
@@ -134,6 +133,7 @@ class CartViewController: UIViewController {
     }
     
     func isCartEmptyOnFirestore(completion: @escaping (Bool) -> Void) {
+        print("isCartEmptyOnFirestore working")
         let docRef = self.database.collection("users").document(self.currentUserUid!)
         docRef.getDocument { document, error in
             if let document = document, document.exists {
@@ -148,19 +148,42 @@ class CartViewController: UIViewController {
         }
     }
     
+    //Fonksiyon seri art arda basislarda fatal error (out of range) sebebiyle "Debouncing" mekanizmasi haline getirildi.
+    //Bu sayede hizli, cift, art arda tiklamalardan kaynakli sorunlarin onune gecildi.
     @objc func minusButtonTapped(_ sender: UIButton) {
+        if isQuantityButtonTapped {
+            return
+        }
+        isQuantityButtonTapped = true
+        
         let index = sender.tag
         let id = CartViewController.cartItems[index].id
         updateProductQuantityOnFirestore(productId: id!, increment: false)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.isQuantityButtonTapped = false
+        }
     }
-    
+
     @objc func plusButtonTapped(_ sender: UIButton) {
+        if isQuantityButtonTapped {
+            return
+        }
+        isQuantityButtonTapped = true
+        
         let index = sender.tag
         let id = CartViewController.cartItems[index].id
         updateProductQuantityOnFirestore(productId: id!, increment: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.isQuantityButtonTapped = false
+        }
     }
+
+    
     
     func updateProductQuantityOnFirestore(productId: Int, increment: Bool) {
+        print("updateProductQuantityOnFirestore working")
         let userRef = database.collection("users").document(currentUserUid!)
         
         userRef.getDocument { document, error in
@@ -192,14 +215,12 @@ class CartViewController: UIViewController {
 //MARK: - Extensions
 extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count: \(CartViewController.cartItems.count)")
-        for item in CartViewController.cartItems {
-            print("id: ", item.id!)
-        }
+        print("numberOfRowsInSection working")
         return CartViewController.cartItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print("cellForRowAt working")
         let cell = tableView.dequeueReusableCell(withIdentifier: K.TableView.cartTableViewCell, for: indexPath) as! CartTableViewCell
         let u = CartViewController.cartItems[indexPath.row]
         cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(named: "placeholderImage.jpg"))
