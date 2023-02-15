@@ -150,7 +150,7 @@ extension HomeViewController: UICollectionViewDataSource {
         case productCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CollectionViews.bottomCollectionViewNibNameAndIdentifier, for: indexPath) as! ProductsCollectionViewCell
             let u = HomeViewController.productList[indexPath.row]
-            cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(named: "cingeneford.png"))
+            cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(systemName: "photo.on.rectangle.angled"))
             cell.productNameLabel.text = u.title
             cell.productRateLabel.text = "⭐️ \(u.rate!) "
             cell.productPriceLabe.text = "$\(u.price!)"

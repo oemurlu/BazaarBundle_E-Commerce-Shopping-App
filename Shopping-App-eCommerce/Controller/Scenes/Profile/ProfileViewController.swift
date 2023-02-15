@@ -115,7 +115,7 @@ class ProfileViewController: UIViewController {
                     self.profilePictureImageView.image = UIImage(data: imageData)
                 }
             } else {
-                self.profilePictureImageView.image = UIImage(systemName: "person.circle")
+                self.profilePictureImageView.image = UIImage(systemName: "person.circle.fill")
             }
         }
     }

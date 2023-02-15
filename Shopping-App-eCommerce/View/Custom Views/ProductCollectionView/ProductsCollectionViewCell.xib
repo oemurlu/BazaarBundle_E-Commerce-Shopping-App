@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,8 +17,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="200" height="270"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="test1" translatesAutoresizingMaskIntoConstraints="NO" id="F5H-Io-IQQ">
-                        <rect key="frame" x="0.0" y="5" width="200" height="189.66666666666666"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="photo.artframe" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="F5H-Io-IQQ">
+                        <rect key="frame" x="0.0" y="6.6666666666666714" width="200" height="186.66666666666669"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="w5v-HB-Mhl">
                         <rect key="frame" x="20" y="244.66666666666666" width="160" height="20.333333333333343"/>
@@ -74,6 +76,9 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="test1" width="692" height="879"/>
+        <image name="photo.artframe" catalog="system" width="128" height="93"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

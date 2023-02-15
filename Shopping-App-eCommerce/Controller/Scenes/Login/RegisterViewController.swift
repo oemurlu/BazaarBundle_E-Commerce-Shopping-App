@@ -17,7 +17,6 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     
     private let database = Firestore.firestore()
-
     private var authUser: FirebaseAuth.User? {
         Auth.auth().currentUser
     }

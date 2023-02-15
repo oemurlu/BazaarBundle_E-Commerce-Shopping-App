@@ -17,8 +17,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="361" height="166"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="test1" translatesAutoresizingMaskIntoConstraints="NO" id="4Ef-Om-Iww">
-                        <rect key="frame" x="13" y="10" width="130" height="146"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="4Ef-Om-Iww">
+                        <rect key="frame" x="13" y="10.666666666666671" width="130" height="144.66666666666669"/>
+                        <color key="tintColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="130" id="a0n-YD-Bdk"/>
                         </constraints>
@@ -103,8 +104,8 @@
     </objects>
     <resources>
         <image name="minus" catalog="system" width="128" height="26"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="test1" width="692" height="879"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

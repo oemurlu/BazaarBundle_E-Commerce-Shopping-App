@@ -23,8 +23,8 @@ class ProductDetailViewController: UIViewController {
     
     static var selectedProductID: Int  = 0
     
-    let currentUserUid = Auth.auth().currentUser?.uid
-    let database = Firestore.firestore()
+    private let currentUserUid = Auth.auth().currentUser?.uid
+    private let database = Firestore.firestore()
     
     //MARK: - Life cycle
     override func viewDidLoad() {

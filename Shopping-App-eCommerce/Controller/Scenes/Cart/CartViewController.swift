@@ -15,6 +15,7 @@ class CartViewController: UIViewController {
     //MARK: - Properties
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var emptyCartView: UIView!
     
     private let database = Firestore.firestore()
     private let currentUserUid = Auth.auth().currentUser?.uid
@@ -61,7 +62,8 @@ class CartViewController: UIViewController {
                     
                     //Urun fiyatlarini kac adet ise ona gore totalCartCost'a ekler.
                     self.totalCartCost += productData.price * Double(quantity)
-                    self.totalPriceLabel.text = "$\(self.totalCartCost)"
+                    let formattedTotalCartCost = String(format: "%.2f", self.totalCartCost)
+                    self.totalPriceLabel.text = "$\(formattedTotalCartCost)"
 
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -86,15 +88,29 @@ class CartViewController: UIViewController {
             if let data = document.data() {
                 self.isCartEmptyOnFirestore { isEmpty in
                     if isEmpty {
+                        self.emptyCartView.isHidden = false
+                        self.emptyCartView.alpha = 1.0
+
+                        self.tableView.isHidden = true
+                        self.tableView.alpha = 0
+                        
                         self.totalCartCost = 0
-                        self.totalPriceLabel.text = "$\(self.totalCartCost)"
+                        let formattedTotalCartCost = String(format: "%.2f", self.totalCartCost)
+                        self.totalPriceLabel.text = "$\(formattedTotalCartCost)"
                         self.tableView.reloadData()
+                       
                     } else {
+                        self.emptyCartView.isHidden = true
+                        
+                        self.tableView.isHidden = false
+                        self.tableView.alpha = 1.0
+                        
                         for productId in data.keys {
                             let productQuantity = data[productId]
                             self.fetchItemsFromAPI(productId: productId, quantity: productQuantity as! Int)
                         }
                     }
+                    self.tableView.reloadData()
                 }
             } else {
                 self.totalCartCost = 0
@@ -189,7 +205,7 @@ extension CartViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.TableView.cartTableViewCell, for: indexPath) as! CartTableViewCell
         let u = CartViewController.cartItems[indexPath.row]
-        cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(named: "placeholderImage.jpg"))
+        cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(systemName: "photo.on.rectangle.angled"))
         cell.productPriceLabel.text = "$\(u.price ?? -1)"
         cell.productTitleLabel.text = u.title
         cell.productQuantity.text = "\(String(describing: u.quantityCount!))"
