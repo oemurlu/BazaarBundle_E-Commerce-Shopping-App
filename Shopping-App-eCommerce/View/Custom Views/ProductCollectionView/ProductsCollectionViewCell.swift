@@ -17,7 +17,10 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        //koseleri yuvarlaklastirma
+        layer.cornerRadius = 15
+        layer.masksToBounds = true
     }
 
 }

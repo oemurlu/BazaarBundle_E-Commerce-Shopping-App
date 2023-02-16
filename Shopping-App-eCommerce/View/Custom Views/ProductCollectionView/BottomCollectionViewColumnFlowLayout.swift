@@ -38,4 +38,11 @@ class BottomCollectionViewColumnFlowLayout: UICollectionViewFlowLayout {
         
     }
     
+    
 }
+
+//extension BottomCollectionViewColumnFlowLayout: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//
+//    }
+//}

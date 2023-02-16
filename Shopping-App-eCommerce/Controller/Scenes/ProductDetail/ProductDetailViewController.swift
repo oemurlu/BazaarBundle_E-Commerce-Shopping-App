@@ -9,7 +9,6 @@ import UIKit
 import Alamofire
 import SDWebImage
 import Firebase
-import FirebaseFirestore
 
 class ProductDetailViewController: UIViewController {
     

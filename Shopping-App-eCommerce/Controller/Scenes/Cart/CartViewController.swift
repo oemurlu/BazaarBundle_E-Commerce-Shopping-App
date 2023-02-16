@@ -225,18 +225,18 @@ extension CartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
             let productId = CartViewController.cartItems[indexPath.row].id
             print(productId!)
             let docRef = database.collection("users").document(currentUserUid!)
             docRef.updateData(["\(String(describing: productId!))": FieldValue.delete()]) { error in
                 if let error = error {
-                    DuplicateFuncs.alertMessage(title: "Error", message: "Product could not be deleted.", vc: self)
+                    DuplicateFuncs.alertMessage(title: "Error", message: "Product could not be deleted", vc: self)
                     print("Product deletion error: \(error.localizedDescription)")
                 } else {
-                    DuplicateFuncs.alertMessage(title: "Sucess", message: "Product deleted.", vc: self)
+                    DuplicateFuncs.alertMessage(title: "Success", message: "Product deleted", vc: self)
                 }
             }
         }

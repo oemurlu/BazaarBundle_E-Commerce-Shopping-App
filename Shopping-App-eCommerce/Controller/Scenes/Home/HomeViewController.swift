@@ -144,7 +144,20 @@ extension HomeViewController: UICollectionViewDataSource {
             
         case categoryCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CollectionViews.topCollectionViewNibNameAndIdentifier, for: indexPath) as! CategoriesCollectionViewCell
-            cell.categoryLabel.text = HomeViewController.categoryList[indexPath.row].category
+            let category = HomeViewController.categoryList[indexPath.row].category
+            cell.categoryLabel.text = category
+            switch category {
+            case "electronics":
+                cell.categoryImageView.image = UIImage(systemName: "iphone")
+            case "jewelery":
+                cell.categoryImageView.image = UIImage(systemName: "sparkles")
+            case "men's clothing":
+                cell.categoryImageView.image = UIImage(systemName: "tshirt.fill")
+            case "women's clothing":
+                cell.categoryImageView.image = UIImage(systemName: "hurricane")
+            default:
+                cell.categoryImageView.image = UIImage(systemName: "xmark.octagon")
+            }
             return cell
             
         case productCollectionView:
@@ -152,7 +165,7 @@ extension HomeViewController: UICollectionViewDataSource {
             let u = HomeViewController.productList[indexPath.row]
             cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(systemName: "photo.on.rectangle.angled"))
             cell.productNameLabel.text = u.title
-            cell.productRateLabel.text = "⭐️ \(u.rate!) "
+            cell.productRateLabel.text = "★ \(u.rate!) "
             cell.productPriceLabe.text = "$\(u.price!)"
             return cell
             
