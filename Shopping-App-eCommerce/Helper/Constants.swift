@@ -12,6 +12,7 @@ struct K {
         static let forgotToLogin = "forgotToLogin"
         static let categoryTableView = "CategoryTableViewVC"
         static let productDetailViewController = "productDetailViewController"
+        static let loginToForgot = "loginToForgot"
     }
     
     struct StoryboardID {

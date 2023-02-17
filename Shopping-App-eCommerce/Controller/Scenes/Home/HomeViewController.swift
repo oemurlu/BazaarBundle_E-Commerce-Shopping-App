@@ -22,6 +22,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionSetup()
+        tabBarSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +73,11 @@ class HomeViewController: UIViewController {
                 print("error on fetchCategories func: \(error.localizedDescription)")
             }
         }
+    }
+    
+    func tabBarSetup() {
+        self.tabBarController?.navigationItem.hidesBackButton = true
+        tabBarController!.tabBar.items?[1].badgeValue = "0"
     }
     
     //MARK: - CollectionCells Setup

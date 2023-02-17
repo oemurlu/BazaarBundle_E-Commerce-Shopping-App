@@ -20,7 +20,7 @@ class CategorizedViewController: UIViewController {
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: K.TableView.categorizedTableViewCell, bundle: nil), forCellReuseIdentifier: K.TableView.categorizedTableViewCell)
+        tableViewCellSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +29,10 @@ class CategorizedViewController: UIViewController {
     }
     
     //MARK: - Functions
+    func tableViewCellSetup() {
+        tableView.register(UINib(nibName: K.TableView.categorizedTableViewCell, bundle: nil), forCellReuseIdentifier: K.TableView.categorizedTableViewCell)
+    }
+    
     func changeVCCategoryToProductDetail(id: Int) {
         ProductDetailViewController.selectedProductID = id
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

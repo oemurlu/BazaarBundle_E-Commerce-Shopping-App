@@ -35,6 +35,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func forgotPasswordPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: K.Segues.loginToForgot, sender: self)
+
+    }
+    
+    
     //MARK: - Functions
     func isEmailVerified() -> Bool {
         if authUser != nil && !authUser!.isEmailVerified { //buradaki 'isEmailVerified' Firebase'den geliyor.

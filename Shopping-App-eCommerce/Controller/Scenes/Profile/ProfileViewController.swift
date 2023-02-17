@@ -29,9 +29,7 @@ class ProfileViewController: UIViewController {
     //MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        imagePicker.delegate = self
-        profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.size.height / 2
-        profilePictureImageView.layer.masksToBounds = true
+        profilePictureSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -137,6 +135,11 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    func profilePictureSetup() {
+        imagePicker.delegate = self
+        profilePictureImageView.layer.cornerRadius = profilePictureImageView.frame.size.height / 2
+        profilePictureImageView.layer.masksToBounds = true
+    }
 }
 
 //MARK: - Extensions

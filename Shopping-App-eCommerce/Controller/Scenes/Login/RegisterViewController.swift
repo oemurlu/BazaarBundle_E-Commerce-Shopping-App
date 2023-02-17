@@ -20,7 +20,7 @@ class RegisterViewController: UIViewController {
     private var authUser: FirebaseAuth.User? {
         Auth.auth().currentUser
     }
-    
+        
     //MARK: - Interaction handlers
     @IBAction func signUpButtonClicked(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text, let username = usernameLabel.text {
@@ -64,6 +64,11 @@ class RegisterViewController: UIViewController {
                 DuplicateFuncs.alertMessage(title: "ERROR", message: "Passwords do not match!", vc: self)
             }
         }
+    }
+    
+    
+    @IBAction func signInButtonClicked(_ sender: UIButton) {
+        self.performSegue(withIdentifier: K.Segues.registerToLogin, sender: self)
     }
     
     //MARK: - Functions

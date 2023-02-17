@@ -49,6 +49,14 @@ class CartViewController: UIViewController {
         tableView.rowHeight = CGFloat(160)
     }
     
+    func cartBadge(count: Int) {
+        if let tabBarController = self.tabBarController {
+            if let tabBarItem = tabBarController.tabBar.items?[1] {
+                tabBarItem.badgeValue = "\(count)"
+            }
+        }
+    }
+    
     func fetchItemsFromAPI(productId: String, quantity: Int)  {
         AF.request("\(K.Network.baseURL)/\(productId)").response { response in
             switch response.result {
@@ -64,6 +72,9 @@ class CartViewController: UIViewController {
                     self.totalCartCost += productData.price * Double(quantity)
                     let formattedTotalCartCost = String(format: "%.2f", self.totalCartCost)
                     self.totalPriceLabel.text = "$\(formattedTotalCartCost)"
+                    
+                    //Cart badge
+                    self.cartBadge(count: CartViewController.cartItems.count)
 
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
@@ -78,7 +89,6 @@ class CartViewController: UIViewController {
     }
     
     func listener() {
-        print("listener working")
         database.collection("users").document(currentUserUid!).addSnapshotListener { documentSnapshot, error in
             guard let document = documentSnapshot else {
                 print("Error fetching documents: \(error!)")
@@ -98,6 +108,8 @@ class CartViewController: UIViewController {
                         let formattedTotalCartCost = String(format: "%.2f", self.totalCartCost)
                         self.totalPriceLabel.text = "$\(formattedTotalCartCost)"
                         self.tableView.reloadData()
+                        
+                        self.cartBadge(count: 0)
                        
                     } else {
                         self.emptyCartView.isHidden = true
@@ -229,7 +241,6 @@ extension CartViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let productId = CartViewController.cartItems[indexPath.row].id
-            print(productId!)
             let docRef = database.collection("users").document(currentUserUid!)
             docRef.updateData(["\(String(describing: productId!))": FieldValue.delete()]) { error in
                 if let error = error {
