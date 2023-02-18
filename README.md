@@ -38,7 +38,7 @@ This is a simple E-Commerce app named BundleBazaar. You can see the details, vid
 
 ## :movie_camera: Video
 
-https://user-images.githubusercontent.com/102610734/219872823-206d4f42-2887-4877-b76b-e15dda8ca23c.mov
+https://user-images.githubusercontent.com/102610734/219877508-573bb8f0-7da3-45f8-b0b7-6e98719e1ce7.mov
 
 ## :camera: Screenshots
 
