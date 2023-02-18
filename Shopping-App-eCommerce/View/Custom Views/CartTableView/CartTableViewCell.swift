@@ -25,6 +25,10 @@ class CartTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         quantity = 1
+        
+        //koseleri yuvarlaklastirma
+        layer.cornerRadius = 20
+        layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

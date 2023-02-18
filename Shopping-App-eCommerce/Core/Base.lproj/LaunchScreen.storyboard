@@ -16,17 +16,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oemurluStudio" translatesAutoresizingMaskIntoConstraints="NO" id="2bc-Bb-kyb">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="madeByOEMURLU" translatesAutoresizingMaskIntoConstraints="NO" id="2bc-Bb-kyb">
+                                <rect key="frame" x="4.6666666666666572" y="234.33333333333334" width="383.66666666666674" height="383.33333333333326"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="2bc-Bb-kyb" secondAttribute="height" multiplier="1:1" id="cjv-id-NUy"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2bc-Bb-kyb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="5kI-a9-6lm"/>
-                            <constraint firstItem="2bc-Bb-kyb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="diq-DF-Suo"/>
-                            <constraint firstItem="2bc-Bb-kyb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gDd-DY-ju1"/>
-                            <constraint firstItem="2bc-Bb-kyb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hly-2G-jt1"/>
+                            <constraint firstItem="2bc-Bb-kyb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="95D-51-Y0F"/>
+                            <constraint firstItem="2bc-Bb-kyb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="VvE-FG-EfR"/>
+                            <constraint firstItem="2bc-Bb-kyb" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.45" id="cww-CD-VpY"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,7 +38,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="oemurluStudio" width="500" height="500"/>
+        <image name="madeByOEMURLU" width="500" height="500"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

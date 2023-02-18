@@ -30,6 +30,10 @@ class HomeViewController: UIViewController {
         fetchProducts()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        HomeViewController.categoryList = []
+    }
+    
     //MARK: - Functions
     func fetchProducts() {
         HomeViewController.productList  = []
@@ -151,18 +155,19 @@ extension HomeViewController: UICollectionViewDataSource {
         case categoryCollectionView:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.CollectionViews.topCollectionViewNibNameAndIdentifier, for: indexPath) as! CategoriesCollectionViewCell
             let category = HomeViewController.categoryList[indexPath.row].category
-            cell.categoryLabel.text = category
+            cell.categoryLabel.text = category?.capitalized
+            
             switch category {
             case "electronics":
-                cell.categoryImageView.image = UIImage(systemName: "iphone")
+                cell.categoryImageView.image = UIImage(named: "electronics.png")
             case "jewelery":
-                cell.categoryImageView.image = UIImage(systemName: "sparkles")
+                cell.categoryImageView.image = UIImage(named: "jewelery.png")
             case "men's clothing":
-                cell.categoryImageView.image = UIImage(systemName: "tshirt.fill")
+                cell.categoryImageView.image = UIImage(named: "man.png")
             case "women's clothing":
-                cell.categoryImageView.image = UIImage(systemName: "hurricane")
+                cell.categoryImageView.image = UIImage(named: "woman.png")
             default:
-                cell.categoryImageView.image = UIImage(systemName: "xmark.octagon")
+                cell.categoryImageView.image = UIImage(systemName: "questionmark.square.dashed")
             }
             return cell
             

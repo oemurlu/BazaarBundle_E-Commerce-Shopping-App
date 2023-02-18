@@ -12,6 +12,7 @@ import SDWebImage
 class CategorizedViewController: UIViewController {
     
     //MARK: - Properties
+    @IBOutlet weak var categoryNameLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     static var filteredProductList: [ProductModel] = []
@@ -26,11 +27,27 @@ class CategorizedViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         CategorizedViewController.filteredProductList = []
         fetchCategoryProducts(category: CategorizedViewController.selectedCategory)
+        categoryNameLabelSetup(name: CategorizedViewController.selectedCategory)
     }
     
     //MARK: - Functions
     func tableViewCellSetup() {
         tableView.register(UINib(nibName: K.TableView.categorizedTableViewCell, bundle: nil), forCellReuseIdentifier: K.TableView.categorizedTableViewCell)
+    }
+    
+    func categoryNameLabelSetup(name: String) {
+        switch name {
+        case "electronics":
+            categoryNameLabel.text = "Electronics"
+        case "jewelery":
+            categoryNameLabel.text = "Jewelery"
+        case "men's%20clothing":
+            categoryNameLabel.text = "Men's clothing"
+        case "women's%20clothing":
+            categoryNameLabel.text = "Women's clothing"
+        default:
+            print("category name error")
+        }
     }
     
     func changeVCCategoryToProductDetail(id: Int) {
@@ -78,7 +95,7 @@ extension CategorizedViewController: UITableViewDataSource {
         cell.productDescriptionLabel.text = u.description
         cell.productRateLabel.text = "⭐️ \(u.rate!) "
         cell.productPriceLabel.text = "\(u.price!)$"
-        cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(named: "cingeneford.png"))
+        cell.productImageView.sd_setImage(with: URL(string: u.image!), placeholderImage: UIImage(systemName: "photo"))
         return cell
     }
 }

@@ -40,13 +40,32 @@ class CartViewController: UIViewController {
     
     //MARK: - Interaction handlers
     @IBAction func checkoutButtonPressed(_ sender: UIButton) {
-        //to-do
+        // firebase users-cuid icindeki tum datalari baska bi yere tasiyalim. cuid icindeki data bos olsun
+        let userRef = database.collection("users").document(currentUserUid!)
+        if CartViewController.cartItems.count == 0 {
+            DuplicateFuncs.alertMessage(title: "ERROR", message: "Your cart is empty", vc: self)
+        } else {
+            for product in CartViewController.cartItems {
+                if let productId = product.id {
+                    userRef.updateData([
+                        "\(productId)" : FieldValue.delete()
+                    ]) { error in
+                        if let error = error {
+                            print("error: \(error)")
+                        } else {
+                            CartViewController.cartItems = []
+                            DuplicateFuncs.alertMessage(title: "Order Success", message: "Your order has been placed", vc: self)
+                        }
+                    }
+                }
+            }
+        }
     }
-    
+     
     //MARK: - Functions
     func tableViewSetup() {
         tableView.register(UINib(nibName: K.TableView.cartTableViewCell, bundle: nil), forCellReuseIdentifier: K.TableView.cartTableViewCell)
-        tableView.rowHeight = CGFloat(160)
+//        tableView.rowHeight = CGFloat(160)
     }
     
     func cartBadge(count: Int) {
@@ -238,16 +257,29 @@ extension CartViewController: UITableViewDelegate {
         return nil
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 160
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let productId = CartViewController.cartItems[indexPath.row].id
             let docRef = database.collection("users").document(currentUserUid!)
             docRef.updateData(["\(String(describing: productId!))": FieldValue.delete()]) { error in
                 if let error = error {
-                    DuplicateFuncs.alertMessage(title: "Error", message: "Product could not be deleted", vc: self)
+                    DuplicateFuncs.alertMessage(title: "Error", message: "Product could not be removed", vc: self)
                     print("Product deletion error: \(error.localizedDescription)")
                 } else {
-                    DuplicateFuncs.alertMessage(title: "Success", message: "Product deleted", vc: self)
+                    DuplicateFuncs.alertMessage(title: "Success", message: "Product removed from cart", vc: self)
                 }
             }
         }

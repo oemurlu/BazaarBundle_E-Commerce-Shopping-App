@@ -91,6 +91,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="minusButton" destination="pJg-HC-aTj" id="ttN-8F-FcF"/>
                 <outlet property="plusButton" destination="2UI-S4-eeq" id="6ba-Pt-aLU"/>
