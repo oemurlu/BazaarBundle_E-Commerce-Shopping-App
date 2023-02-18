@@ -1,15 +1,35 @@
 # :moneybag: BazaarBundle_E-CommerceApp
-    In this project.....
+
+This is a simple E-Commerce app named BundleBazaar. You can see the details, video and screenshots below.
 
 ## :nut_and_bolt: Key Features
 
 **Architecture:** MVC
 
-**UI:** Storyboard
+**UI:** Xib, Storyboard
 
 **Backend:** Firebase
 
 **Networking:** Alamofire
+
+## :magic_wand: Components
+
+### iOS
+- TableView
+- CollectionView
+- TabBar Controller
+- Navigation Controller
+- Alert
+
+### Service
+- API 
+- Firestore Storage
+- Firebase Authentication
+- Firebase RealTime Database
+
+### 3rd Party Libraries
+- Alamofire
+- SDWebImage
 
 ## :hammer: Tools
 
@@ -18,11 +38,7 @@
 
 ## :movie_camera: Video
 
-<a href="/media/video/screenRecording.mov" title="Screen recording"><img src="/media/photo/ss1.png" alt="screen recording" /></a>
-<video src="/media/video/screenRecording.mov" controls="controls" style="max-width: 730px;"></video>
-
-![](/media/video/screenRecording.mov)
-
+https://user-images.githubusercontent.com/102610734/219872823-206d4f42-2887-4877-b76b-e15dda8ca23c.mov
 
 ## :camera: Screenshots
 
@@ -36,7 +52,7 @@
 <img width="240" src="/media/photo/ss7.png">
 <img width="240" src="/media/photo/ss8.png">
 <img width="240" src="/media/photo/ss9.png">
-<img width="240" src="/media/photo/ss10png">
+<img width="240" src="/media/photo/ss10.png">
 <img width="240" src="/media/photo/ss11.png">
 <img width="240" src="/media/photo/ss12.png">
 </p>
